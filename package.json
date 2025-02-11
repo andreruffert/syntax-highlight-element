@@ -1,7 +1,6 @@
 {
   "name": "syntax-highlight-element",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0-rc.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +11,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "vite": "^6.1.0"
+    "vite": "6.1.0"
   }
 }

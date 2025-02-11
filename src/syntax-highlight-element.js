@@ -1,59 +1,54 @@
-const tokenTypes = [
-  'atrule',
-  'attr',
-  'attr',
-  'bold',
-  'boolean',
-  'builtin',
-  'cdata',
-  'char',
-  'class',
-  'class-name',
-  'comment',
-  'constant',
-  'deleted',
-  'doctype',
-  'entity',
-  'entity',
-  'function',
-  'important',
-  'important',
-  'inserted',
-  'italic',
-  'keyword',
-  'namespace',
-  'number',
-  'operator',
-  'parameter',
-  'prolog',
-  'property',
-  'punctuation',
-  'regex',
-  'selector',
-  'string',
-  'string',
-  'symbol',
-  'tag',
-  'url',
-  'variable',
-];
-
-for (const tokenType of tokenTypes) {
-  CSS.highlights.set(tokenType, new Highlight());
-}
-
-const TEMPLATE = document.createElement('template');
-TEMPLATE.innerHTML = `
-  <pre><slot></slot></pre>
-`;
+import { CONFIG } from './constants';
 
 export class SyntaxHighlightElement extends HTMLElement {
+  get language() {
+    return this.getAttribute('language') || 'plain';
+  }
+
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
-
-    if (!this.firstChild) {
-      this.append(TEMPLATE.content.cloneNode(true));
-    }
+    this.paintTokenHighlights();
   }
+
+  paintTokenHighlights = () => {
+    // Tokenize the text
+    const lang = window.Prism.languages[this.language] || undefined;
+    const tokens = window.Prism.tokenize(this.innerText, lang);
+    const flatTokens = tokens.flatMap(getFlatToken);
+    const extendedTokenTypes = CONFIG.extendTokenTypes?.[this.language] || [];
+
+    // Paint highlights
+    let pos = 0;
+    for (const token of flatTokens) {
+      if (token.type) {
+        const tokenType = extendedTokenTypes.includes(token.type)
+          ? `${this.language}-${token.type}` // Language specific overwrite
+          : token.type;
+
+        const range = new Range();
+        range.setStart(this.firstChild, pos);
+        range.setEnd(this.firstChild, pos + token.length);
+        CSS.highlights.get(tokenType)?.add(range);
+      }
+      pos += token.length;
+    }
+  };
+}
+
+/**
+ * Flatten tokens for e.g. html attributes etc.
+ */
+export function getFlatToken(token) {
+  if (typeof token?.content === 'string') {
+    return token;
+  }
+
+  if (Array.isArray(token.content)) {
+    const insideTokens = token.content.flatMap((x) =>
+      typeof x === 'string' ? { type: token.type, content: x, length: x.length } : x,
+    );
+    return insideTokens.flatMap(getFlatToken);
+  }
+
+  return token;
 }

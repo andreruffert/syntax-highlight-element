@@ -2,12 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦚</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦜</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>syntax-highlight-element</title>
+    <link rel="stylesheet" href="/src/themes/default.css">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      syntax-highlight {
+        border-radius: 0.25rem;
+        display: block;
+        padding: 1rem;
+      }
+    </style>
+    <script>
+      window.SyntaxHighlightElement = window.SyntaxHighlightElement || {};
+      window.SyntaxHighlightElement.config = {
+        // Optional: language specific token type overwrites
+        extendTokenTypes: {
+          css: ['important'],
+        }
+      }
+    </script>
   </head>
   <body>
-    <syntax-highlight></syntax-highlight>
+    <syntax-highlight language="html">&lt;!-- HTML --&gt;
+&lt;syntax-highlight language="html"&gt;&lt;/syntax-highlight&gt;</syntax-highlight>
+
+    <syntax-highlight language="js">// JS
+import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight>
+
+    <syntax-highlight language="css">/* CSS */
+@layer syntax-highlight-element {
+  syntax-highlight {
+    display: inline-block;
+    font-family: monospace;
+    white-space: pre;
+    tab-size: 2;
+    hyphens: none;
+    line-height: 1.6;
+    overflow-x: auto !important;
+  }
+}</syntax-highlight>
+
     <script type="module" src="/src/index.js"></script>
   </body>
 </html>
