@@ -13,5 +13,5 @@ export default defineConfig({
       fileName: 'syntax-highlight-element',
       cssFileName: 'syntax-highlight-element',
     },
-  }
+  },
 });

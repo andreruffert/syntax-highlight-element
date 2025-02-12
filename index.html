@@ -18,6 +18,16 @@
         display: block;
         padding: 1rem;
       }
+
+      syntax-highlight[data-inline] {
+        padding: unset;
+        hyphens: unset;
+        overflow: unset;
+        display: inline;
+        line-height: inherit;
+        white-space: break-spaces;
+        padding: 0.15em 0.25em;
+      }
     </style>
     <script>
       window.SyntaxHighlightElement = window.SyntaxHighlightElement || {};
@@ -30,6 +40,8 @@
     </script>
   </head>
   <body>
+    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <syntax-highlight language="html" data-inline>&lt;syntax-highlight&gt;&lt;!-- inline code --&gt;&lt;/syntax-highlight&gt;</syntax-highlight> Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma.</p>
+
     <syntax-highlight language="html">&lt;!-- HTML --&gt;
 &lt;syntax-highlight language="html"&gt;
   &lt;!-- ... --&gt;

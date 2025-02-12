@@ -34,13 +34,13 @@
     /* --color-prettylights-syntax-sublimelinter-gutter-mark: #818b98; */
     --color-prettylights-syntax-variable: #953800;
 
-    display: inline-block;
+    display: inline-flex;
     font-family: monospace;
     white-space: pre;
     tab-size: 2;
     hyphens: none;
     line-height: 1.6;
-    overflow-x: auto;
+    overflow: auto;
 
     background-color: var(--color-bg);
     color: var(--color-fg);
@@ -83,6 +83,13 @@
       --color-prettylights-syntax-variable: #ffa657;
     }
   }
+
+  /*
+   * INFO:
+   * (1.) Currently not a supported property for the highlight pseudo-elements.
+   * Full list of supported properties: https://drafts.csswg.org/css-pseudo-4/#highlight-styling
+   * More infos: https://github.com/w3c/csswg-drafts/issues/8355
+   */
 
   ::highlight(punctuation),
   ::highlight(number),
@@ -138,17 +145,16 @@
   }
 
   ::highlight(regex) {
-    font-weight: bold;
+    font-weight: bold; /* (1.) */
     color: var(--color-prettylights-syntax-string-regexp);
   }
 
   ::highlight(italic) {
-    font-style: italic;
+    font-style: italic; /* (1.) */
     color: var(--color-prettylights-syntax-markup-italic);
   }
-
   ::highlight(bold) {
-    font-weight: bold;
+    font-weight: bold; /* (1.) */
     color: var(--color-prettylights-syntax-markup-bold);
   }
 
