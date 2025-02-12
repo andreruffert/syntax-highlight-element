@@ -59,8 +59,7 @@ window[NAMESPACE] = window[NAMESPACE] || {};
   ];
 
   for (const tokenType of tokenTypes) {
-    const highlightRegistry = CSS.highlights.set(tokenType, new Highlight());
-    window[NAMESPACE].registry = highlightRegistry;
+    CSS.highlights.set(tokenType, new Highlight());
   }
 
   try {
