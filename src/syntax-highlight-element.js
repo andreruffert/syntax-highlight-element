@@ -11,6 +11,12 @@ export class SyntaxHighlightElement extends HTMLElement {
     super();
     this.#internals = this.attachInternals();
     this.#internals.role = 'code';
+
+    // Make focusable via keyboard navigation
+    if (!this.hasAttribute('tabindex')) {
+      this.setAttribute('tabindex', '0');
+    }
+
     this.paintTokenHighlights();
   }
 
