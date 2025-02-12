@@ -20,7 +20,9 @@
   ],
   "scripts": {
     "dev": "vite",
+    "dev:docs": "vite --config vite.docs.config.js",
     "build": "vite build",
+    "build:docs": "vite build --config vite.docs.config.js",
     "preview": "vite preview",
     "format": "biome check --write",
     "lint": "biome ci",
