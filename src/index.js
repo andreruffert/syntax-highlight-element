@@ -48,12 +48,12 @@ window[NAMESPACE] = window[NAMESPACE] || {};
     'property',
     'punctuation',
     'regex',
+    'rule',
     'selector',
     'string',
     'symbol',
     'tag',
     'url',
-    'rule',
     // Optional extend
     ...extendTokenTypes,
   ];
@@ -65,13 +65,12 @@ window[NAMESPACE] = window[NAMESPACE] || {};
 
   try {
     await loadPrism();
-
     if (!window.customElements.get(ELEMENT_NAME)) {
       window[NAMESPACE].element = SyntaxHighlightElement;
       window.customElements.define(ELEMENT_NAME, SyntaxHighlightElement);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 })();
 
