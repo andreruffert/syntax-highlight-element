@@ -15,7 +15,7 @@ The code is highlighted without having to wrap a bunch of `<span>` elements arou
 ## Install
 
 ```shell
-npm install syntax-highlight-element@next
+npm install syntax-highlight-element
 ```
 
 ## Usage
@@ -26,11 +26,18 @@ Make sure to load the default theme styles exported via `syntax-highlight-elemen
 import 'syntax-highlight-element';
 ```
 
+Or via CDN
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/browse/syntax-highlight-element@latest/dist/syntax-highlight-element.css">
+<script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"></script>
+```
+
 HTML
 
 ```html
 <syntax-highlight language="js">
-  /* ... */
+  // ... 
 </syntax-highlight>
 ```
 
