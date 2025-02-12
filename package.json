@@ -23,7 +23,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "format": "biome check --write",
-    "lint": "biome ci"
+    "lint": "biome ci",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
