@@ -4,7 +4,7 @@ export class SyntaxHighlightElement extends HTMLElement {
   #internals;
 
   get language() {
-    return this.getAttribute('language') || 'plain';
+    return this.getAttribute('language') || 'plaintext';
   }
 
   constructor() {
