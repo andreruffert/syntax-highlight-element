@@ -1,12 +1,16 @@
 import { CONFIG } from './constants';
 
 export class SyntaxHighlightElement extends HTMLElement {
+  #internals;
+
   get language() {
     return this.getAttribute('language') || 'plain';
   }
 
   constructor() {
     super();
+    this.#internals = this.attachInternals();
+    this.#internals.role = 'code';
     this.paintTokenHighlights();
   }
 
