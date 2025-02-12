@@ -50,7 +50,7 @@
     <syntax-highlight language="js">// JS
 import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight>
 
-    <syntax-highlight language="css">/* CSS */
+    <syntax-highlight language="css" contenteditable="plaintext-only">/* CSS */
 @layer syntax-highlight-element {
   syntax-highlight {
     display: inline-block;
@@ -64,6 +64,15 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
 }</syntax-highlight>
 
     <script type="module" src="/src/index.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('keyup', event => {
+          if (!event.target.hasAttribute('contenteditable')) return;
+          event.target.normalize();
+          event.target.update();
+        });
+      });
+    </script>
   </body>
 </html>
 

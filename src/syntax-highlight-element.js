@@ -65,9 +65,17 @@ export class SyntaxHighlightElement extends HTMLElement {
   clearTokenHighlights() {
     for (const highlight of this.highlights) {
       CSS.highlights.get(highlight.tokenType)?.delete(highlight.range);
+      // Delete internal reference
+      this.#highlights.delete(highlight);
     }
-    // Clear internal references
-    this.#highlights.clear();
+  }
+
+  /**
+   * Update token highlights
+   */
+  update() {
+    this.clearTokenHighlights();
+    this.paintTokenHighlights();
   }
 }
 
