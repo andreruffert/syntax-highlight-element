@@ -1,3 +1,4 @@
+import './themes/default.css';
 import { CONFIG, ELEMENT_NAME, NAMESPACE } from './constants';
 import { SyntaxHighlightElement } from './syntax-highlight-element';
 export { SyntaxHighlightElement as default };
