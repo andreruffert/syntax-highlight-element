@@ -1,7 +1,9 @@
 @layer reset, layout;
 
 @layer reset {
-  * {
+  *,
+  :after,
+  :before {
     box-sizing: border-box;
   }
   body {
@@ -11,24 +13,62 @@
 
 @layer layout {
   :root {
-    --font-main: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    --font-mono:
-      ui-monospace, Cascadia Mono, Menlo, Monaco, Segoe UI Mono, Roboto Mono, Oxygen Mono, Ubuntu Mono, Source Code Pro, Fira Mono, Inconsolata, Droid Sans Mono, Courier New, monospace;
+    --spacing-0: 0rem;
+    --spacing-0\.5: 0.125rem;
+    --spacing-1: 0.25rem;
+    --spacing-1\.5: 0.375rem;
+    --spacing-2: 0.5rem;
+    --spacing-2\.5: 0.625rem;
+    --spacing-3: 0.75rem;
+    --spacing-3\.5: 0.875rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+
+    --sizes-xs: 20rem;
+    --sizes-sm: 24rem;
+    --sizes-md: 28rem;
+    --sizes-lg: 32rem;
+    --sizes-xl: 36rem;
+    --sizes-2xl: 42rem;
+    --sizes-3xl: 48rem;
+    --sizes-4xl: 56rem;
+    --sizes-5xl: 64rem;
+    --sizes-6xl: 72rem;
+    --sizes-7xl: 80rem;
+    --sizes-8xl: 90rem;
+    --sizes-full: 100%;
+
+    --fonts-sans:
+      ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
 
     --dark-accent: #8cccd5;
     --dark-canvas: #0d1117;
     --dark-canvas-text: rgba(255, 255, 245, 0.86);
     --dark-link-text: var(--dark-accent);
-    --dark-button-face: var(--dark-accent);
+    --dark-button-face: #151b23;
 
     --light-accent: #5086a1;
     --light-canvas: #ffffff;
     --light-canvas-text: #3c3c43;
     --light-link-text: var(--light-accent);
-    --light-button-face: var(--light-accent);
+    --light-button-face: #f6f8fa;
 
-    font-family: var(--font-main);
-    font-size: 15px;
+    font-family: var(--fonts-sans);
     line-height: 1.5;
     font-weight: 400;
 
@@ -42,36 +82,142 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  body {
+    display: grid;
+    gap: var(--base-size-64);
+    min-height: 100vh;
+  }
+
   :focus-visible {
     outline-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
   a {
-    font-weight: 500;
     color: light-dark(var(--light-link-text), var(--dark-link-text));
     text-decoration: inherit;
   }
   a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    text-decoration-line: underline;
+    text-decoration-style: wavy;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
   }
 
   input {
     accent-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
-  h1 {
-    font-size: clamp(1.5rem, 2vw + 1.5rem, 3.25rem);
-    line-height: 1.1;
-    margin-block-start: 0;
+  select {
+    appearance: unset;
+    background-color: unset;
+    border: 1px solid transparent;
+    color: inherit;
+    font-family: var(--fonts-mono);
+    padding: var(--spacing-1\.5) var(--spacing-3);
+    border-radius: 4px;
+    /* isolation: isolate; */
+  }
+  select:hover {
+    border-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
+  code {
+    background-color: light-dark(#f6f8fa, #151b23);
+    border-radius: 0.25rem;
+    padding: var(--spacing-0\.5) var(--spacing-1);
+  }
+
+  h1 {
+    margin-block: 0;
+  }
+
+  button,
+  .button {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-weight: 500;
+    font-family: inherit;
+    text-align: center;
+    background-color: light-dark(
+      var(--light-button-face),
+      var(--dark-button-face)
+    );
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  button:hover,
+  .button:hover {
+    border-color: light-dark(var(--light-accent), var(--dark-accent));
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-10);
+    margin-inline: auto;
+    max-inline-size: var(--sizes-5xl);
+    inline-size: var(--sizes-full);
+    padding-inline: var(--spacing-4);
+    padding-block: var(--spacing-24);
+  }
+
+  footer {
+    border-block-start: 1px solid light-dark(#e2e2e3, #000000);
+    text-align: center;
+    margin-inline: auto;
+    margin-block-start: auto;
+    inline-size: var(--sizes-full);
+    padding: var(--spacing-8) var(--spacing-4);
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .copy-code {
+    display: flex;
+    justify-content: space-between;
+    inline-size: 0;
+    min-inline-size: 100%;
+    border-radius: 0.6rem;
+    background-color: light-dark(#f6f8fa, #151b23);
+
+    syntax-highlight {
+      border-radius: inherit;
+      padding: var(--spacing-4);
+    }
+
+    .button {
+      align-self: flex-start;
+      margin: var(--spacing-2);
+      font-size: 85%;
+    }
+  }
+
+  /* Intro */
   [data-section="intro"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-4);
     text-align: center;
     text-wrap: balance;
 
+    .emoji {
+      font-size: clamp(2rem, 2vw + 2rem, 5rem);
+      line-height: 1;
+    }
+
     .heading {
+      font-size: clamp(1.5rem, 2vw + 1rem, 2.75rem);
+      line-height: 1.1;
       display: flex;
       flex-direction: column;
+      margin: 0;
     }
 
     .heading span {
@@ -80,15 +226,37 @@
 
     .tagline {
       font-size: clamp(1rem, 2vw, 1.25rem);
+      margin: 0;
+    }
+
+    .badges {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      font-size: 0;
+    }
+
+    .copy-code-container {
+      max-inline-size: var(--sizes-md);
+      inline-size: var(--sizes-full);
+      padding-block-start: var(--spacing-6);
     }
   }
 
+  /* Demo playground */
   [data-section="playground"] {
-    border-radius: 0.6rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
-      rgba(0, 0, 0, 0.1);
-    margin: 1rem;
-    display: grid;
+    margin-inline: auto;
+    padding-block: var(--spacing-6);
+    max-inline-size: var(--sizes-4xl);
+    inline-size: var(--sizes-full);
+
+    .playground {
+      border-radius: 0.6rem;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
+        rgba(0, 0, 0, 0.1);
+      display: grid;
+    }
 
     .menubar,
     syntax-highlight {
@@ -104,30 +272,46 @@
 
     .menubar {
       display: flex;
-      gap: 2rem;
+      gap: var(--spacing-4);
       padding: .5rem 1rem;
       align-self: start;
       border-block-end: 1px solid rgba(156, 163, 175, 0.051);
       border-start-start-radius: inherit;
       border-start-end-radius: inherit;
+      overflow: auto;
 
       /* color: white;
       mix-blend-mode: exclusion; */
     }
 
-    .menubar select {
-      appearance: unset;
-      border: unset;
-      background-color: unset;
-      background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 32 32' width='1em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='currentColor' d='M16 22L6 12l1.4-1.4l8.6 8.6l8.6-8.6L26 12z'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: left .15em center;
-      color: inherit;
-      font-family: var(--font-mono);
-      padding: .25em;
-      padding-inline-start: 1.6em;
+    .menubar__item {
+      display: flex;
+      gap: var(--spacing-2);
+      align-items: center;
+    }
+  }
 
-      /* isolation: isolate; */
+  /* Content */
+  [data-section="content"] {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4);
+
+    h1 {
+      font-size: clamp(1.5rem, 2vw + 1rem, 2rem);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(1rem, 2vw + .75rem, 1.5rem);
+      margin-block-start: var(--spacing-6);
+      margin-block-end: var(--spacing-4);
+    }
+
+    p,
+    .copy-code {
+      margin-block-start: 0;
+      margin-block-end: var(--spacing-4);
     }
   }
 }

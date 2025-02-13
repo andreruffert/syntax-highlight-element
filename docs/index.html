@@ -10,7 +10,7 @@
     <meta name="og:type" content="website">
     <meta name="og:url" content="https://andreruffert.github.io/syntax-highlight-element/">
     <meta name="og:description" content="A &lt;syntax-highlight&gt; Web Component that uses the CSS Custom Highlight API.">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦜</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>" />
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.css">
     <script>
@@ -26,27 +26,90 @@
   <body>
     <main>
       <section data-section="intro">
-      <h1 class="heading">
-        <span>&lt;syntax-highlight&gt;</span>
-        Web Component
-      </h1>
-      <p class="tagline">A custom element that uses the CSS Custom Highlight API for syntax highlighting</p>
+        <span class="emoji" aria-hidden="true">👓</span>
+        <h1 class="heading">
+          <span>&lt;syntax-highlight&gt;</span>
+          Web Component
+        </h1>
+        <p class="tagline">A custom element that uses the CSS Custom Highlight API for syntax highlighting</p>
+        <p class="badges">
+          <img src="https://img.shields.io/badge/Release%20Candidate-32A9C3" alt="Release Candidate" />
+          <a href="https://www.npmjs.com/package/syntax-highlight-element">
+            <img src="https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm version" />
+          </a>
+          <!--a href="https://www.npmjs.com/package/syntax-highlight-element"><img src="https://img.shields.io/npm/dm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm downloads"></a-->
+          <a href="https://github.com/andreruffert/syntax-highlight-element"><img src="https://img.shields.io/badge/source-a?logo=github&color=1B3C4A" alt="GitHub"></a>
+        </p>
+        <div class="copy-code-container">
+          <div class="copy-code">
+            <syntax-highlight id="copy-npm-install">npm install syntax-highlight-element</syntax-highlight>
+            <clipboard-copy for="copy-npm-install" class="button">Copy</clipboard-copy>
+          </div>
+        </div>
+        <span aria-hidden="true">~</span>
       </section>
 
       <section data-section="playground">
-        <div class="menubar">
-          <select aria-label="Code language">
-            <option>HTML</option>
-          </select>
-          <select aria-label="Theme">
-            <option>Default</option>
-          </select>
+        <div class="playground">
+          <div class="menubar">
+            <div class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+              <select aria-label="Code language">
+                <option>HTML</option>
+              </select>
+            </div>
+            <div class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+              <select aria-label="Theme">
+                <option>GitHub Prettylights</option>
+              </select>
+            </div>
+          </div>
+          <syntax-highlight language="html"></syntax-highlight>
         </div>
-        <syntax-highlight language="html"></syntax-highlight>
+      </section>
+
+      <section data-section="content">
+        <article>
+          <h1>Installation & Usage</h1>
+
+          <h2>Install</h2>
+          <p>Install via npm</p>
+          <div class="copy-code">
+            <syntax-highlight id="copy-install-npm">npm install syntax-highlight-element</syntax-highlight>
+            <clipboard-copy for="copy-install-npm" class="button">Copy</clipboard-copy>
+          </div>
+
+          <h2>Usage</h2>
+          <p>Make sure to load the theme styles exported via <code>syntax-highlight-element/themes/default.css</code> or create your own.</p>
+          <div class="copy-code">
+            <syntax-highlight language="js" id="copy-usage-import-js">import 'syntax-highlight-element';</syntax-highlight>
+            <clipboard-copy for="copy-usage-import-js" class="button">Copy</clipboard-copy>
+          </div>
+          <p>Or via CDN</p>
+          <div class="copy-code">
+            <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.css"&gt;
+&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
+            <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
+          </div>
+          <p>HTML</p>
+          <div class="copy-code">
+            <syntax-highlight language="html" id="copy-usage-html">&lt;syntax-highlight language="js"&gt;
+  // ...
+&lt;/syntax-highlight&gt;</syntax-highlight>
+            <clipboard-copy for="copy-usage-html" class="button">Copy</clipboard-copy>
+          </div>
+
+          <h2>Attributes</h2>
+          <ul>
+            <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html | js | css</code>.
+          </ul>
+        </article>
       </section>
     </main>
 
-    <footer></footer>
+    <footer>
+      <p>An <a href="https://github.com/andreruffert" target="_blank" rel="noreferrer">open source</a> project by <a href="https://andreruffert.com" target="_blank" rel="noreferrer">André Ruffert</a> ©.</p>
+      <p>Released under the MIT License.</p>
+    </footer>
 
     <script type="module">
       import 'https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.js';
@@ -54,6 +117,19 @@
 
       const playgroundCode = document.querySelector('[data-section="playground"] syntax-highlight');
       playgroundCode.innerHTML = languageExamples.html;
+    </script>
+
+    <script type="module">
+      import 'https://unpkg.com/@github/clipboard-copy-element@1.3.0/dist/index.js';
+
+      document.addEventListener('clipboard-copy', event => {
+        const button = event.target;
+        const defaultContent = button.textContent;
+        button.textContent = 'Copied!'
+        setTimeout(() => {
+          button.textContent = defaultContent;
+        }, 1800);
+      })
     </script>
   </body>
 </html>
