@@ -29,7 +29,7 @@ import 'syntax-highlight-element';
 Or via CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/browse/syntax-highlight-element@latest/dist/syntax-highlight-element.css">
+<link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.css">
 <script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"></script>
 ```
 
