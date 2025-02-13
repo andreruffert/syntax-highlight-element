@@ -1,4 +1,5 @@
 import { CONFIG } from './constants';
+import { tokenize } from './utils';
 
 export class SyntaxHighlightElement extends HTMLElement {
   #internals;
@@ -30,14 +31,12 @@ export class SyntaxHighlightElement extends HTMLElement {
    */
   paintTokenHighlights() {
     // Tokenize the text
-    const lang = window.Prism.languages[this.language] || undefined;
-    const tokens = window.Prism.tokenize(this.innerText, lang);
-    const flatTokens = tokens.flatMap(getFlatToken);
+    const tokens = tokenize(this.innerText, this.language);
     const extendedTokenTypes = CONFIG.extendTokenTypes?.[this.language] || [];
 
     // Paint highlights
     let pos = 0;
-    for (const token of flatTokens) {
+    for (const token of tokens) {
       if (token.type) {
         // Optional language specific overwrite
         const tokenType = extendedTokenTypes.includes(token.type)
@@ -77,22 +76,4 @@ export class SyntaxHighlightElement extends HTMLElement {
     this.clearTokenHighlights();
     this.paintTokenHighlights();
   }
-}
-
-/**
- * Flatten tokens for e.g. html attributes etc.
- */
-export function getFlatToken(token) {
-  if (typeof token?.content === 'string') {
-    return token;
-  }
-
-  if (Array.isArray(token.content)) {
-    const insideTokens = token.content.flatMap((x) =>
-      typeof x === 'string' ? { type: token.type, content: x, length: x.length } : x,
-    );
-    return insideTokens.flatMap(getFlatToken);
-  }
-
-  return token;
 }
