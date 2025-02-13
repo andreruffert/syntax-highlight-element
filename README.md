@@ -43,7 +43,7 @@ HTML
 
 ### Attributes
 
-* `html` The code language. The default is `plaintext`. Currently suported languages `html|js|css`.
+* `language` The code language. The default is `plaintext`. Currently suported languages `html|js|css`.
 
 ## Credits
 
