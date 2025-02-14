@@ -246,48 +246,36 @@
 
   /* Demo playground */
   [data-section="playground"] {
-    margin-inline: auto;
-    padding-block: var(--spacing-6);
+    display: grid;
     max-inline-size: var(--sizes-4xl);
     inline-size: var(--sizes-full);
+    margin-inline: auto;
+    padding-block: var(--spacing-6);
 
     .playground {
       border-radius: 0.6rem;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
         rgba(0, 0, 0, 0.1);
-      display: grid;
-    }
-
-    .menubar,
-    syntax-highlight {
-      grid-area: 1 / -1;
-    }
-
-    syntax-highlight {
-      border-radius: inherit;
-      padding: 1rem;
-      padding-block-start: 4rem;
-      order: -1;
+      block-size: 40vh;
+      overflow: auto;
     }
 
     .menubar {
       display: flex;
       gap: var(--spacing-4);
-      padding: .5rem 1rem;
-      align-self: start;
-      border-block-end: 1px solid rgba(156, 163, 175, 0.051);
-      border-start-start-radius: inherit;
-      border-start-end-radius: inherit;
+      padding: var(--spacing-4);
       overflow: auto;
-
-      /* color: white;
-      mix-blend-mode: exclusion; */
     }
 
     .menubar__item {
       display: flex;
       gap: var(--spacing-2);
       align-items: center;
+    }
+
+    syntax-highlight {
+      border-radius: inherit;
+      padding: var(--spacing-4);
     }
   }
 
