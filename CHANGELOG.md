@@ -1,3 +1,12 @@
+# [1.0.0-rc.3](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.2...v1.0.0-rc.3) (2025-02-19)
+
+
+### Bug Fixes
+
+* ReferenceError: loadPrism is not defined ([21eff35](https://github.com/andreruffert/syntax-highlight-element/commit/21eff35ba4cade6907d5106867c359e88913c2ba))
+
+
+
 # [1.0.0-rc.2](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.1...v1.0.0-rc.2) (2025-02-19)
 
 
