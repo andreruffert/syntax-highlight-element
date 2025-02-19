@@ -1,6 +1,7 @@
 import './themes/default.css';
 import { CONFIG, NAMESPACE } from './constants';
 import { SyntaxHighlightElement } from './syntax-highlight-element';
+import { loadPrism } from './utils';
 export { SyntaxHighlightElement as default };
 
 window[NAMESPACE] = window[NAMESPACE] || {};
