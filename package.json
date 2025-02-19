@@ -26,10 +26,12 @@
     "preview": "vite preview",
     "format": "biome check --write",
     "lint": "biome ci",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "conventional-changelog-cli": "5.0.0",
     "vite": "6.1.0"
   },
   "repository": {
