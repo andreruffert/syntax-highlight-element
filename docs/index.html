@@ -1,18 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <title>&lt;syntax-highlight&gt; - Web Component</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8">
+    <title>&lt;syntax-highlight&gt; element - Web Component</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="author" content="André Ruffert">
-    <meta name="description" content="A &lt;syntax-highlight&gt; Web Component that uses the CSS Custom Highlight API.">
+    <meta name="description" content="A &lt;syntax-highlight&gt; web component that uses the CSS Custom Highlight API.">
     <meta name="keywords" content="syntax highlighting,syntax,highlight,css custom highlight api,custom element,web component">
+
+    <meta name="og:title" content="&lt;syntax-highlight&gt; element - Web Component">
     <meta name="og:type" content="website">
     <meta name="og:url" content="https://andreruffert.github.io/syntax-highlight-element/">
-    <meta name="og:description" content="A &lt;syntax-highlight&gt; Web Component that uses the CSS Custom Highlight API.">
-    <meta property="og:image" content="https://repository-images.githubusercontent.com/931295844/e41674af-e2fb-46c3-87e2-19118678a4ee" />
-    <meta property="og:image:alt" content="👓 Syntax Highlighting using the CSS Custom Highlight API - andreruffert/syntax-highlight-element" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>" />
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/931295844/e41674af-e2fb-46c3-87e2-19118678a4ee">
+    <meta property="og:image:alt" content="👓 Syntax Highlighting using the CSS Custom Highlight API - andreruffert/syntax-highlight-element">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
+
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.css">
     <script>
@@ -31,7 +35,7 @@
         <span class="emoji" aria-hidden="true">👓</span>
         <h1 class="heading">
           <span>&lt;syntax-highlight&gt;</span>
-          Web Component
+          web component
         </h1>
         <p class="tagline">A custom element that uses the CSS Custom Highlight API for syntax highlighting</p>
         <p class="badges">
@@ -103,14 +107,24 @@
 
           <h2>Attributes</h2>
           <ul>
-            <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html | js | css</code>.
+            <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html|js|css</code>.
+          </ul>
+        </article>
+      </section>
+
+      <section data-section="content">
+        <article>
+          <h1>Credits</h1>
+          <ul>
+            <li><a href="https://github.com/bramus" target="_blank">Bramus Van Damme</a> and his <a href="https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting" target="_blank">blog post</a> where I first read about using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API" target="_blank">CSS Custom Highlight API</a> for syntax highlighting.
+            <li><a href="https://github.com/PrismJS/prism" target="_blank">Prism</a>'s tokenizer
           </ul>
         </article>
       </section>
     </main>
 
     <footer>
-      <p>An <a href="https://github.com/andreruffert" target="_blank" rel="noreferrer">open source</a> project by <a href="https://andreruffert.com" target="_blank" rel="noreferrer">André Ruffert</a> ©.</p>
+      <p>An <a href="https://github.com/andreruffert" target="_blank">open source</a> project by <a href="https://andreruffert.com" target="_blank">André Ruffert</a> ©.</p>
       <p>Released under the MIT License.</p>
     </footer>
 
