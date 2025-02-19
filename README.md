@@ -2,7 +2,7 @@
 
 > Syntax Highlighting using the CSS Custom Highlight API.
 
-The code is highlighted without having to wrap a bunch of `<span>` elements around each token, thanks to [Prism's][prism_github] tokenizer and the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API].
+The code is highlighted without having to wrap a bunch of `<span>` elements around each token, thanks to [Prism][prism_github]'s tokenizer and the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API].
 
 <div align="center">
   <br>
@@ -48,7 +48,8 @@ HTML
 
 ## Credits
 
-Credits to [@bramus][bramus_github] and his [blog post][bramus_blog_post] where I first read about using the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API] for syntax highlighting.
+* [Bramus Van Damme][bramus_github] and his [blog post][bramus_blog_post] where I first read about using the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API] for syntax highlighting.
+* [Prism][prism_github]'s tokenizer
 
 ## License
 
