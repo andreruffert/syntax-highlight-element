@@ -1,4 +1,3 @@
-export const ELEMENT_NAME = 'syntax-highlight';
 export const NAMESPACE = 'SyntaxHighlightElement';
 
 /**

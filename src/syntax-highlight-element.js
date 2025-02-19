@@ -1,7 +1,64 @@
 import { CONFIG } from './constants';
-import { tokenize } from './utils';
+import { loadPrism, tokenize } from './utils';
+
+if (CSS.highlights && !window.Prism) {
+  await loadPrism();
+
+  // Optional language specific overwrites
+  const extendTokenTypes = Object.entries(CONFIG?.extendTokenTypes || {}).flatMap((entry) => {
+    const [lang, tokenTypes] = entry;
+    return tokenTypes.map((tokenType) => `${lang}-${tokenType}`);
+  });
+
+  /**
+   * https://prismjs.com/tokens.html#standard-tokens
+   */
+  const tokenTypes = [
+    // Standard tokens
+    'atrule',
+    'attr-name',
+    'attr-value',
+    'bold',
+    'boolean',
+    'builtin',
+    'cdata',
+    'char',
+    'class-name',
+    'comment',
+    'constant',
+    'deleted',
+    'doctype',
+    'entity',
+    'function',
+    'important',
+    'inserted',
+    'italic',
+    'keyword',
+    'namespace',
+    'number',
+    'operator',
+    'prolog',
+    'property',
+    'punctuation',
+    'regex',
+    'rule',
+    'selector',
+    'string',
+    'symbol',
+    'tag',
+    'url',
+    // Optional extend
+    ...extendTokenTypes,
+  ];
+
+  for (const tokenType of tokenTypes) {
+    CSS.highlights.set(tokenType, new Highlight());
+  }
+}
 
 export class SyntaxHighlightElement extends HTMLElement {
+  static tagName = 'syntax-highlight';
+
   #internals;
   #highlights = new Set();
 
@@ -22,7 +79,9 @@ export class SyntaxHighlightElement extends HTMLElement {
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
     }
+  }
 
+  connectedCallback() {
     this.paintTokenHighlights();
   }
 
