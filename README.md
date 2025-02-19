@@ -44,6 +44,7 @@ HTML
 ### Attributes
 
 * `language` The code language. The default is `plaintext`. Currently suported languages `html|js|css`.
+* `content-selector` A CSS selector to specify the content element. The default is the element itself.
 
 ## Credits
 

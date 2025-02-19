@@ -60,7 +60,13 @@ export class SyntaxHighlightElement extends HTMLElement {
   static tagName = 'syntax-highlight';
 
   #internals;
+
   #highlights = new Set();
+
+  get contentElement() {
+    if (!this.hasAttribute('content-selector')) return this;
+    return this.querySelector(this.getAttribute('content-selector')) || this;
+  }
 
   get language() {
     return this.getAttribute('language') || 'plaintext';
@@ -90,7 +96,7 @@ export class SyntaxHighlightElement extends HTMLElement {
    */
   paintTokenHighlights() {
     // Tokenize the text
-    const tokens = tokenize(this.innerText, this.language);
+    const tokens = tokenize(this.contentElement.innerText, this.language);
     const extendedTokenTypes = CONFIG.extendTokenTypes?.[this.language] || [];
 
     // Paint highlights
@@ -104,8 +110,8 @@ export class SyntaxHighlightElement extends HTMLElement {
 
         // Token position range
         const range = new Range();
-        range.setStart(this.firstChild, pos);
-        range.setEnd(this.firstChild, pos + token.length);
+        range.setStart(this.contentElement.firstChild, pos);
+        range.setEnd(this.contentElement.firstChild, pos + token.length);
 
         // Add range to tokenType highlight and update the global HighlightRegistry
         CSS.highlights.get(tokenType)?.add(range);

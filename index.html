@@ -50,7 +50,7 @@
     <syntax-highlight language="js">// JS
 import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight>
 
-    <syntax-highlight language="css" contenteditable="plaintext-only" spellcheck="false">/* CSS */
+    <syntax-highlight language="css" content-selector="style"><style style="display: block; outline: none;" contenteditable="plaintext-only" spellcheck="false">/* CSS */
 @layer syntax-highlight-element {
   syntax-highlight {
     display: inline-block;
@@ -61,7 +61,7 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
     line-height: 1.6;
     overflow-x: auto !important;
   }
-}</syntax-highlight>
+}</style></syntax-highlight>
 
     <script type="module" src="/src/index.js"></script>
     <script>
@@ -69,7 +69,7 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
         document.addEventListener('keyup', event => {
           if (!event.target.hasAttribute('contenteditable')) return;
           event.target.normalize();
-          event.target.update();
+          event.target.closest('syntax-highlight').update();
         });
       });
     </script>
