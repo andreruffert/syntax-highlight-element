@@ -1,5 +1,20 @@
 /**
  *
+ * @returns {Promise}
+ */
+export function loadPrism() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/prismjs@1.29.0/prism.js';
+    script.dataset.manual = '';
+    script.onload = resolve;
+    script.onerror = reject;
+    document.head.appendChild(script);
+  });
+}
+
+/**
+ *
  * @param {string} text - The text to tokenize.
  * @param {string} language - The syntax language grammar.
  * @returns {Array} - An array of flattened prismjs tokens.

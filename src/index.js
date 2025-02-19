@@ -1,5 +1,5 @@
 import './themes/default.css';
-import { CONFIG, ELEMENT_NAME, NAMESPACE } from './constants';
+import { CONFIG, NAMESPACE } from './constants';
 import { SyntaxHighlightElement } from './syntax-highlight-element';
 export { SyntaxHighlightElement as default };
 
@@ -64,23 +64,11 @@ window[NAMESPACE] = window[NAMESPACE] || {};
 
   try {
     await loadPrism();
-    if (!window.customElements.get(ELEMENT_NAME)) {
+    if (!window.customElements.get(SyntaxHighlightElement.tagName)) {
       window[NAMESPACE].element = SyntaxHighlightElement;
-      window.customElements.define(ELEMENT_NAME, SyntaxHighlightElement);
+      window.customElements.define(SyntaxHighlightElement.tagName, SyntaxHighlightElement);
     }
   } catch (error) {
     console.error(error);
   }
 })();
-
-function loadPrism() {
-  return new Promise((resolve, reject) => {
-    const script = document.createElement('script');
-    script.src = 'https://unpkg.com/prismjs@1.29.0/prism.js';
-    script.setAttribute('data-manual', '');
-    script.setAttribute('async', '');
-    script.onload = resolve;
-    script.onerror = reject;
-    document.head.appendChild(script);
-  });
-}

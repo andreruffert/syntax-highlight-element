@@ -2,6 +2,8 @@ import { CONFIG } from './constants';
 import { tokenize } from './utils';
 
 export class SyntaxHighlightElement extends HTMLElement {
+  static tagName = 'syntax-highlight';
+
   #internals;
   #highlights = new Set();
 
