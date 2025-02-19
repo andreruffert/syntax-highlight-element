@@ -1,4 +1,4 @@
-@layer reset, layout;
+@layer reset, syntax-highlight-element, layout;
 
 @layer reset {
   *,
@@ -116,7 +116,6 @@
     font-family: var(--fonts-mono);
     padding: var(--spacing-1\.5) var(--spacing-3);
     border-radius: 4px;
-    /* isolation: isolate; */
   }
   select:hover {
     border-color: light-dark(var(--light-accent), var(--dark-accent));
@@ -136,12 +135,12 @@
   .button {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
-    text-align: center;
     background-color: light-dark(
       var(--light-button-face),
       var(--dark-button-face)
@@ -273,7 +272,12 @@
       align-items: center;
     }
 
+    .menubar__item select {
+      font-size: 1rem;
+    }
+
     syntax-highlight {
+      display: block;
       border-radius: inherit;
       padding: var(--spacing-4);
     }
@@ -300,14 +304,6 @@
     .copy-code {
       margin-block-start: 0;
       margin-block-end: var(--spacing-4);
-    }
-  }
-}
-
-@layer syntax-highlight-element {
-  [data-section="playground"] {
-    syntax-highlight {
-      display: block;
     }
   }
 }
