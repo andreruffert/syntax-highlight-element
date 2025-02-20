@@ -4,6 +4,7 @@
   "description": "Syntax Highlighting using the CSS Custom Highlight API",
   "license": "MIT",
   "funding": "https://github.com/andreruffert/syntax-highlight-element?sponsor=1",
+  "homepage": "https://andreruffert.github.io/syntax-highlight-element/",
   "author": {
     "name": "André Ruffert",
     "url": "https://andreruffert.com"
@@ -34,9 +35,16 @@
     "conventional-changelog-cli": "5.0.0",
     "vite": "6.1.1"
   },
+  "volta": {
+    "node": "22.13.1",
+    "npm": "11.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/andreruffert/syntax-highlight-element.git"
+  },
+  "bugs": {
+    "url": "https://github.com/andreruffert/syntax-highlight-element/issues"
   },
   "keywords": [
     "syntax",
