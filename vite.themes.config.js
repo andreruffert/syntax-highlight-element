@@ -4,13 +4,19 @@ import { defineConfig } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
+const themes = [
+  resolve(__dirname, 'src/themes/prettylights.css'),
+];
+
 export default defineConfig({
   build: {
-    lib: {
-      formats: ['es'],
-      entry: resolve(__dirname, 'src/index.js'),
-      name: 'SyntaxHighlightElement',
-      fileName: 'syntax-highlight-element',
+    outDir: 'dist/themes',
+    cssMinify: false,
+    rollupOptions: {
+      input: themes,
+      output: {
+        assetFileNames: () => '[name][extname]',
+      },
     },
   },
 });

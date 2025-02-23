@@ -1,0 +1,151 @@
+@import "theme-defaults.css";
+
+@layer syntax-highlight-element {
+  syntax-highlight {
+    --prettylights-bg: #f6f8fa;
+    --prettylights-fg: #1f2328;
+    --prettylights-comment: #59636e;
+    --prettylights-constant: #0550ae;
+    --prettylights-constant-other-reference-link: #0a3069;
+    --prettylights-entity: #6639ba;
+    --prettylights-entity-tag: #0550ae;
+    --prettylights-keyword: #cf222e;
+    --prettylights-bold: #f0f6fc;
+    --prettylights-deleted-bg: #ffebe9;
+    --prettylights-deleted-text: #82071e;
+    --prettylights-heading: #0550ae;
+    --prettylights-inserted-bg: #dafbe1;
+    --prettylights-inserted-text: #116329;
+    --prettylights-italic: #f0f6fc;
+    --prettylights-string: #0a3069;
+    --prettylights-string-regexp: #116329;
+    --prettylights-variable: #953800;
+
+    color: var(--prettylights-fg);
+    background-color: var(--prettylights-bg);
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+    line-height: 1.6;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    syntax-highlight {
+      --prettylights-bg: #151b23;
+      --prettylights-fg: #f0f6fc;
+      --prettylights-comment: #9198a1;
+      --prettylights-constant: #79c0ff;
+      --prettylights-constant-other-reference-link: #a5d6ff;
+      --prettylights-entity: #d2a8ff;
+      --prettylights-entity-tag: #7ee787;
+      --prettylights-keyword: #ff7b72;
+      --prettylights-bold: #f0f6fc;
+      --prettylights-deleted-bg: #67060c;
+      --prettylights-deleted-text: #ffdcd7;
+      --prettylights-heading: #1f6feb;
+      --prettylights-inserted-bg: #033a16;
+      --prettylights-inserted-text: #aff5b4;
+      --prettylights-italic: #f0f6fc;
+      --prettylights-string: #a5d6ff;
+      --prettylights-string-regexp: #7ee787;
+      --prettylights-variable: #ffa657;
+    }
+  }
+
+  /*
+   * INFO:
+   * (1.) Currently not a supported property for the highlight pseudo-elements.
+   * Full list of supported properties: https://drafts.csswg.org/css-pseudo-4/#highlight-styling
+   * More infos: https://github.com/w3c/csswg-drafts/issues/8355
+   */
+
+  ::highlight(punctuation),
+  ::highlight(number),
+  ::highlight(atrule) {
+    color: var(--prettylights-fg);
+  }
+
+  ::highlight(namespace) {
+    opacity: 0.7;
+  }
+
+  ::highlight(comment),
+  ::highlight(prolog),
+  ::highlight(doctype),
+  ::highlight(cdata) {
+    color: var(--prettylights-comment);
+  }
+
+  ::highlight(constant),
+  ::highlight(attr-name),
+  ::highlight(char),
+  ::highlight(builtin),
+  ::highlight(operator) {
+    color: var(--prettylights-constant);
+  }
+
+  ::highlight(property),
+  ::highlight(tag),
+  ::highlight(boolean),
+  ::highlight(symbol) {
+    color: var(--prettylights-entity-tag);
+  }
+
+  ::highlight(entity),
+  ::highlight(selector),
+  ::highlight(class-name),
+  ::highlight(function) {
+    color: var(--prettylights-entity);
+  }
+
+  ::highlight(keyword),
+  ::highlight(rule) {
+    color: var(--prettylights-keyword);
+  }
+
+  ::highlight(string),
+  ::highlight(attr-value) {
+    color: var(--prettylights-string);
+  }
+
+  ::highlight(variable) {
+    color: var(--prettylights-variable);
+  }
+
+  ::highlight(regex) {
+    font-weight: bold; /* (1.) */
+    color: var(--prettylights-string-regexp);
+  }
+
+  ::highlight(italic) {
+    font-style: italic; /* (1.) */
+    color: var(--prettylights-italic);
+  }
+  ::highlight(bold) {
+    font-weight: bold; /* (1.) */
+    color: var(--prettylights-bold);
+  }
+
+  ::highlight(deleted) {
+    color: var(--prettylights-deleted-text);
+    background-color: var(--prettylights-deleted-bg);
+  }
+
+  ::highlight(inserted) {
+    color: var(--prettylights-inserted-text);
+    background-color: var(--prettylights-inserted-bg);
+  }
+
+  ::highlight(url) {
+    text-decoration: underline;
+    color: var(--prettylights-constant-other-reference-link);
+  }
+
+  ::highlight(important) {
+    color: var(--prettylights-heading);
+  }
+
+  /* CSS language overwrites */
+  ::highlight(css-important) {
+    color: var(--prettylights-keyword);
+  }
+}
