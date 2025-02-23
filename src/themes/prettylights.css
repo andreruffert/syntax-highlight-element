@@ -1,4 +1,8 @@
-@import "theme-defaults.css";
+@import "theme-defaults.css" layer(syntax-highlight-element);
+
+/**
+ * Source: https://github.com/primer/primitives/blob/main/src/tokens/functional/color/syntax.json5#L240
+ */
 
 @layer syntax-highlight-element {
   syntax-highlight {
