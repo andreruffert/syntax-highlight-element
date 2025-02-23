@@ -4,9 +4,7 @@ import { defineConfig } from 'vite';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const themes = [
-  resolve(__dirname, 'src/themes/prettylights.css'),
-];
+const themes = [resolve(__dirname, 'src/themes/prettylights.css')];
 
 export default defineConfig({
   build: {
