@@ -1,0 +1,12 @@
+/**
+ * Defaults injected in every theme.
+ */
+syntax-highlight {
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  overflow: auto;
+  tab-size: 2;
+  hyphens: none;
+}
