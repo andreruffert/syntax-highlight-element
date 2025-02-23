@@ -1,0 +1,93 @@
+@import "theme-defaults.css" layer(syntax-highlight-element);
+
+/**
+ * Source: https://github.com/PrismJS/prism/blob/master/themes/prism.css
+ */
+
+@layer syntax-highlight-element {
+  syntax-highlight {
+    color: black;
+    background: #f5f2f0;
+    text-shadow: 0 1px white;
+    font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+    line-height: 1.5;
+  }
+
+  @media print {
+    syntax-highlight {
+      text-shadow: none;
+    }
+  }
+
+  ::highlight(comment),
+  ::highlight(prolog),
+  ::highlight(doctype),
+  ::highlight(cdata) {
+    color: slategray;
+  }
+
+  ::highlight(punctuation) {
+    color: #999;
+  }
+
+  ::highlight(namespace) {
+    opacity: 0.7;
+  }
+
+  ::highlight(property),
+  ::highlight(tag),
+  ::highlight(boolean),
+  ::highlight(number),
+  ::highlight(constant),
+  ::highlight(symbol),
+  ::highlight(deleted) {
+    color: #905;
+  }
+
+  ::highlight(selector),
+  ::highlight(attr-name),
+  ::highlight(string),
+  ::highlight(char),
+  ::highlight(builtin),
+  ::highlight(inserted) {
+    color: #690;
+  }
+
+  ::highlight(operator),
+  ::highlight(entity),
+  ::highlight(url),
+  ::highlight(css-string) {
+    color: #9a6e3a;
+    /* This background color was intended by the author of this theme. */
+    background: hsla(0, 0%, 100%, 0.5);
+  }
+
+  ::highlight(atrule),
+  ::highlight(attr-value),
+  ::highlight(keyword) {
+    color: #07a;
+  }
+
+  ::highlight(function),
+  ::highlight(class-name) {
+    color: #dd4a68;
+  }
+
+  ::highlight(regex),
+  ::highlight(important),
+  ::highlight(variable) {
+    color: #e90;
+  }
+
+  ::highlight(important),
+  ::highlight(bold) {
+    font-weight: bold;
+  }
+  ::highlight(italic) {
+    font-style: italic;
+  }
+
+  ::highlight(entity) {
+    cursor: help;
+  }
+}
