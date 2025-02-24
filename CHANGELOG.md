@@ -1,3 +1,20 @@
+# [1.0.0-rc.5](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2025-02-24)
+
+
+### Code Refactoring
+
+* change global namespace ([5b2ab40](https://github.com/andreruffert/syntax-highlight-element/commit/5b2ab4094b83ef0659320aa60d2efe6308d94044))
+* element define ([5be25be](https://github.com/andreruffert/syntax-highlight-element/commit/5be25be006bc030bb5633c47b8887ebdca6a3bb9))
+
+
+### BREAKING CHANGES
+
+* - change global namespace from `window.SyntaxHighlightElement` to `window.she` (window.she.config)
+- expose the element itself with `window.SyntaxHighlightElement` instead of `window.SyntaxHighlightElement.element`
+* `config.extendTokenTypes` got renamed to `config.languageTokens`
+
+
+
 # [1.0.0-rc.4](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.3...v1.0.0-rc.4) (2025-02-23)
 
 
