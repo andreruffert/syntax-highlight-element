@@ -122,7 +122,10 @@
   }
 
   code {
-    background-color: light-dark(#f6f8fa, #151b23);
+    background-color: light-dark(
+      var(--light-button-face),
+      var(--dark-button-face)
+    );
     border-radius: 0.25rem;
     padding: var(--spacing-0\.5) var(--spacing-1);
   }
@@ -153,6 +156,63 @@
     border-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: var(--spacing-5);
+    background-color: light-dark(
+      var(--light-button-face-muted),
+      var(--dark-button-face-muted)
+    );
+    border-block-end: 1px solid
+      light-dark(var(--light-button-face), var(--dark-button-face));
+    padding: var(--spacing-6) var(--spacing-4);
+
+    [data-color-scheme-toggle] {
+      padding: var(--spacing-2);
+      aspect-ratio: 1;
+      align-self: flex-start;
+    }
+  }
+
+  .header-links {
+    font-size: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+    gap: var(--spacing-5);
+    container-type: inline-size;
+
+    a {
+      color: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-2);
+      text-wrap: nowrap;
+      width: 100%;
+    }
+
+    a:first-of-type {
+      margin-inline-end: auto;
+    }
+
+    svg {
+      display: none;
+    }
+  }
+
+  @container (min-width: 400px) {
+    .header-links a {
+      width: auto;
+    }
+
+    .header-links svg {
+      display: initial;
+    }
+  }
+
   main {
     display: flex;
     flex-direction: column;
@@ -165,7 +225,8 @@
   }
 
   footer {
-    border-block-start: 1px solid light-dark(#e2e2e3, #000000);
+    border-block-start: 1px solid
+      light-dark(var(--light-button-face), var(--dark-button-face));
     text-align: center;
     margin-inline: auto;
     margin-block-start: auto;
@@ -183,7 +244,8 @@
     inline-size: 0;
     min-inline-size: 100%;
     border-radius: 0.6rem;
-    background-color: light-dark(#f6f8fa, #151b23);
+    /* background-color: light-dark(#f6f8fa, #151b23); */
+    background-color: var(--dark-button-face);
 
     syntax-highlight {
       border-radius: inherit;
@@ -234,6 +296,7 @@
       flex-wrap: wrap;
       gap: .5rem;
       font-size: 0;
+      padding-block-start: var(--spacing-6);
     }
 
     .copy-code-container {

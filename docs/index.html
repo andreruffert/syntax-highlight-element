@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.css">
+    <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/themes/prettylights.css" data-she-theme>
     <script>
       window.SyntaxHighlightElement = window.SyntaxHighlightElement || {};
       window.SyntaxHighlightElement.config = {
@@ -30,6 +30,13 @@
     </script>
   </head>
   <body>
+    <header>
+      <div class="header-links">
+        <a href="https://andreruffert.com" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>Made by André Ruffert</a>
+        <a href="https://github.com/andreruffert/syntax-highlight-element" target="_blank" rel="noreferrer">Star on GitHub <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg></a>
+      </div>
+      <button data-color-scheme-toggle aria-label="Toggle color scheme"><svg xmlns="http://www.w3.org/2000/svg" width="1.6em" height="1.6em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.9 4.9 1.4 1.4"/><path d="m17.7 17.7 1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.3 17.7-1.4 1.4"/><path d="m19.1 4.9-1.4 1.4"/></svg></button>
+    </header>
     <main>
       <section data-section="intro">
         <span class="emoji" aria-hidden="true">👓</span>
@@ -43,7 +50,7 @@
           <a href="https://www.npmjs.com/package/syntax-highlight-element">
             <img src="https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm version" />
           </a>
-          <!--a href="https://www.npmjs.com/package/syntax-highlight-element"><img src="https://img.shields.io/npm/dm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm downloads"></a-->
+          <a href="https://www.npmjs.com/package/syntax-highlight-element"><img src="https://img.shields.io/npm/dm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm downloads"></a>
           <a href="https://github.com/andreruffert/syntax-highlight-element"><img src="https://img.shields.io/badge/source-a?logo=github&color=1B3C4A" alt="GitHub"></a>
         </p>
         <div class="copy-code-container">
@@ -58,15 +65,11 @@
       <section data-section="playground">
         <div class="menubar">
           <div class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            <select aria-label="Code language">
-              <option>HTML</option>
-            </select>
+            <select aria-label="Code language" id="example-language-select"></select>
           </div>
           <div class="menubar__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v4"/><path d="M17 2a1 1 0 0 1 1 1v9H6V3a1 1 0 0 1 1-1z"/><path d="M6 12a1 1 0 0 0-1 1v1a2 2 0 0 0 2 2h2a1 1 0 0 1 1 1v2.9a2 2 0 1 0 4 0V17a1 1 0 0 1 1-1h2a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1"/></svg>
-            <select aria-label="Theme">
-              <option>GitHub Prettylights</option>
-            </select>
+            <select aria-label="Theme" id="theme-preset-select"></select>
           </div>
         </div>
         <div class="playground">
@@ -86,14 +89,14 @@
           </div>
 
           <h2>Usage</h2>
-          <p>Make sure to load the theme styles exported via <code>syntax-highlight-element/themes/default.css</code> or create your own.</p>
+          <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code> or create your own.</p>
           <div class="copy-code">
             <syntax-highlight language="js" id="copy-usage-import-js">import 'syntax-highlight-element';</syntax-highlight>
             <clipboard-copy for="copy-usage-import-js" class="button">Copy</clipboard-copy>
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.css"&gt;
+            <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;
 &lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
           </div>
@@ -131,10 +134,53 @@
 
     <script type="module">
       import 'https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.js';
-      import * as languageExamples from './language-examples.js'
+      import { languageExamples } from './language-examples.js'
+      import { themePresets } from './theme-presets.js';
 
+      const SUPPORTS_CSS_HIGHLIGHTS = CSS.highlights;
+
+      /**
+        * Language example switcher
+        */
       const playgroundCode = document.querySelector('[data-section="playground"] syntax-highlight');
-      playgroundCode.innerHTML = languageExamples.html;
+      const languageSelector = document.querySelector('#example-language-select');
+
+      // Set initial language example
+      playgroundCode.innerHTML = languageExamples['HTML'].code;
+
+      const languageOptions = Object.keys(languageExamples).map((name, index) => {
+        const option = document.createElement('option');
+        option.value = option.textContent = name;
+        option.selected = !index;
+        return option
+      });
+      languageOptions.forEach(option => languageSelector.append(option));
+      languageSelector.addEventListener('change', event => {
+        const example = languageExamples[event.target.value];
+        playgroundCode.innerHTML = example.code || 'Not found';
+        if (SUPPORTS_CSS_HIGHLIGHTS) {
+          playgroundCode.parentElement.scrollTop = 0;
+          playgroundCode.setAttribute('language', example.language);
+          playgroundCode.update();
+        };
+      });
+
+      /**
+      * Theme preset switcher
+      */
+      const themeStyles = document.querySelector('[data-she-theme]');
+      const themeSelector = document.querySelector('#theme-preset-select');
+      const themeOptions = Object.keys(themePresets).map((name, index) => {
+        const option = document.createElement('option');
+        option.value = option.textContent = name;
+        option.selected = !index;
+        return option
+      });
+      themeOptions.forEach(option => themeSelector.append(option));
+      themeSelector.addEventListener('change', event => {
+        const theme = themePresets[event.target.value] || 'Not found';
+        themeStyles.href = `https://unpkg.com/syntax-highlight-element@next/dist/themes/${theme}.css`
+      });
     </script>
 
     <script type="module">
@@ -148,6 +194,38 @@
           button.textContent = defaultContent;
         }, 1800);
       })
+    </script>
+
+    <script type="module">
+      const systemPreference = getSystemColorScheme();
+
+      document.addEventListener('click', (event) => {
+        const target = event.target.closest('[data-color-scheme-toggle]');
+        if (!target) return;
+        toggleColorScheme();
+      });
+
+      function toggleColorScheme() {
+        const currentPreference = getColorScheme();
+        const newPreference = currentPreference === 'dark' ? 'light' : 'dark';
+        setColorScheme(newPreference);
+      }
+
+      function getColorScheme() {
+        const computedStyle = window.getComputedStyle(document.documentElement);
+        const currentPreference = computedStyle.getPropertyValue('color-scheme');
+        const isSystem = currentPreference === 'light dark';
+        return isSystem ? systemPreference : currentPreference;
+      }
+
+      function setColorScheme(newPreference) {
+        document.documentElement.style.setProperty('color-scheme', newPreference);
+      }
+
+      function getSystemColorScheme() {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
+        return 'light';
+      }
     </script>
   </body>
 </html>

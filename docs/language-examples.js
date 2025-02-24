@@ -1,4 +1,16 @@
-export const html = escapeHtml`<!doctype html>
+/**
+ * Escape HTML tag
+ * @param {string} string - The html string to escape
+ * @returns {string}
+ */
+function escapeHtml(strings) {
+  const placeholderElement = document.createElement('div');
+  return strings.map((html) => {
+    return placeholderElement.appendChild(document.createTextNode(html)).parentNode.innerHTML;
+  });
+}
+
+const html = escapeHtml`<!doctype html>
 <html class="no-js" lang="">
 
 <head>
@@ -32,7 +44,7 @@ export const html = escapeHtml`<!doctype html>
 
 </html>`;
 
-export const css = `@layer reset {
+const css = `@layer reset {
   :host,html {
     --font-fallback: ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     -webkit-text-size-adjust: 100%;
@@ -205,14 +217,13 @@ export const css = `@layer reset {
   }
 }`;
 
-/**
- * Escape HTML tag
- * @param {string} string - The html string to escape
- * @returns {string}
- */
-function escapeHtml(strings) {
-  const placeholderElement = document.createElement('div');
-  return strings.map((html) => {
-    return placeholderElement.appendChild(document.createTextNode(html)).parentNode.innerHTML;
-  });
-}
+export const languageExamples = {
+  HTML: {
+    language: 'html',
+    code: html,
+  },
+  CSS: {
+    language: 'css',
+    code: css,
+  },
+};
