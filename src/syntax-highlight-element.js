@@ -1,11 +1,28 @@
 import { CONFIG } from './constants';
-import { tokenize } from './utils';
+import { loadPrism, setupTokenHighlights, tokenize } from './utils';
+
+const DEFAULT_TAG_NAME = 'syntax-highlight';
 
 export class SyntaxHighlightElement extends HTMLElement {
-  static tagName = 'syntax-highlight';
+  static async define(tagName = DEFAULT_TAG_NAME, registry = customElements) {
+    if (!CSS.highlights) {
+      console.info('The CSS Custom Highlight API is not supported in this browser.');
+      return;
+    }
+
+    if (!registry.get(tagName)) {
+      setupTokenHighlights(CONFIG?.languageTokens || {});
+      try {
+        await loadPrism();
+        registry.define(tagName, SyntaxHighlightElement);
+        return SyntaxHighlightElement;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }
 
   #internals;
-
   #highlights = new Set();
 
   get contentElement() {
@@ -40,14 +57,14 @@ export class SyntaxHighlightElement extends HTMLElement {
   paintTokenHighlights() {
     // Tokenize the text
     const tokens = tokenize(this.contentElement.innerText, this.language);
-    const extendedTokenTypes = CONFIG.extendTokenTypes?.[this.language] || [];
+    const languageTokenTypes = CONFIG.languageTokens?.[this.language] || [];
 
     // Paint highlights
     let pos = 0;
     for (const token of tokens) {
       if (token.type) {
         // Optional language specific overwrite
-        const tokenType = extendedTokenTypes.includes(token.type)
+        const tokenType = languageTokenTypes.includes(token.type)
           ? `${this.language}-${token.type}`
           : token.type;
 

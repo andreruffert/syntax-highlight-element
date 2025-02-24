@@ -3,7 +3,7 @@ export const NAMESPACE = 'SyntaxHighlightElement';
 /**
  * @typedef Config
  * @type {object}
- * @property {{ [key: string]: string[] }} extendTokenTypes - Language specific token type overwrites.
+ * @property {{ [key: string]: string[] }} languageTokens - Language specific token type overwrites.
  */
 
 /** @type {Config} */
