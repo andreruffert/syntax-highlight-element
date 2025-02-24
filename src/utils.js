@@ -1,4 +1,61 @@
 /**
+ * Create & register the token `Highlight`'s in the `CSS.highlights` registry.
+ * This enables the use of `::highlight(tokenType)` in CSS to style them.
+ * @param {Object} [languageTokens={}] - Language specific overwrites.
+ */
+export function setupTokenHighlights(languageTokens = {}) {
+  const languageTokenTypes = Object.entries(languageTokens).flatMap((entry) => {
+    const [lang, tokenTypes] = entry;
+    return tokenTypes.map((tokenType) => `${lang}-${tokenType}`);
+  });
+
+  /**
+   * https://prismjs.com/tokens.html#standard-tokens
+   */
+  const tokenTypes = [
+    // Standard tokens
+    'atrule',
+    'attr-name',
+    'attr-value',
+    'bold',
+    'boolean',
+    'builtin',
+    'cdata',
+    'char',
+    'class-name',
+    'comment',
+    'constant',
+    'deleted',
+    'doctype',
+    'entity',
+    'function',
+    'important',
+    'inserted',
+    'italic',
+    'keyword',
+    'namespace',
+    'number',
+    'operator',
+    'prolog',
+    'property',
+    'punctuation',
+    'regex',
+    'rule',
+    'selector',
+    'string',
+    'symbol',
+    'tag',
+    'url',
+    // Optional extends
+    ...languageTokenTypes,
+  ];
+
+  for (const tokenType of tokenTypes) {
+    CSS.highlights.set(tokenType, new Highlight());
+  }
+}
+
+/**
  *
  * @returns {Promise}
  */
