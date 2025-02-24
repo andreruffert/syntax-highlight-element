@@ -1,4 +1,4 @@
-export const NAMESPACE = 'SyntaxHighlightElement';
+export const NAMESPACE = 'she';
 
 /**
  * @typedef Config

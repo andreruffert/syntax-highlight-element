@@ -1,6 +1,8 @@
 import { NAMESPACE } from './constants';
 import { SyntaxHighlightElement } from './syntax-highlight-element';
-export { SyntaxHighlightElement as default };
+
+export { SyntaxHighlightElement };
+export default SyntaxHighlightElement;
 
 window[NAMESPACE] = window[NAMESPACE] || {};
-window[NAMESPACE].element = SyntaxHighlightElement.define();
+window.SyntaxHighlightElement = SyntaxHighlightElement.define();
