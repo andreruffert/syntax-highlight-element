@@ -170,10 +170,11 @@
       light-dark(var(--light-button-face), var(--dark-button-face));
     padding: var(--spacing-6) var(--spacing-4);
 
-    [data-color-scheme-toggle] {
+    color-scheme-switch.button {
       padding: var(--spacing-2);
       aspect-ratio: 1;
       align-self: flex-start;
+      user-select: none;
     }
   }
 
