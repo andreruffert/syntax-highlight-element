@@ -5,4 +5,7 @@ export { SyntaxHighlightElement };
 export default SyntaxHighlightElement;
 
 window[NAMESPACE] = window[NAMESPACE] || {};
-window.SyntaxHighlightElement = SyntaxHighlightElement.define();
+
+if (!new URL(import.meta.url).searchParams.has('define', 'false')) {
+  window.SyntaxHighlightElement = SyntaxHighlightElement.define();
+}
