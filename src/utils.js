@@ -56,13 +56,121 @@ export function setupTokenHighlights(languageTokens = {}) {
 }
 
 /**
+ * https://github.com/PrismJS/prism/blob/master/plugins/autoloader/prism-autoloader.js#L14
+ */
+const langDependencies = {
+  javascript: 'clike',
+  actionscript: 'javascript',
+  arduino: 'cpp',
+  aspnet: ['markup', 'csharp'],
+  bison: 'c',
+  c: 'clike',
+  csharp: 'clike',
+  cpp: 'c',
+  coffeescript: 'javascript',
+  crystal: 'ruby',
+  'css-extras': 'css',
+  d: 'clike',
+  dart: 'clike',
+  django: 'markup',
+  erb: ['ruby', 'markup-templating'],
+  fsharp: 'clike',
+  flow: 'javascript',
+  glsl: 'clike',
+  go: 'clike',
+  groovy: 'clike',
+  haml: 'ruby',
+  handlebars: 'markup-templating',
+  haxe: 'clike',
+  java: 'clike',
+  jolie: 'clike',
+  kotlin: 'clike',
+  less: 'css',
+  markdown: 'markup',
+  'markup-templating': 'markup',
+  n4js: 'javascript',
+  nginx: 'clike',
+  objectivec: 'c',
+  opencl: 'cpp',
+  parser: 'markup',
+  php: ['clike', 'markup-templating'],
+  'php-extras': 'php',
+  plsql: 'sql',
+  processing: 'clike',
+  protobuf: 'clike',
+  pug: 'javascript',
+  qore: 'clike',
+  jsx: ['markup', 'javascript'],
+  tsx: ['jsx', 'typescript'],
+  reason: 'clike',
+  ruby: 'clike',
+  sass: 'css',
+  scss: 'css',
+  scala: 'java',
+  smarty: 'markup-templating',
+  soy: 'markup-templating',
+  swift: 'clike',
+  tap: 'yaml',
+  textile: 'markup',
+  tt2: ['clike', 'markup-templating'],
+  twig: 'markup',
+  typescript: 'javascript',
+  vbnet: 'basic',
+  velocity: 'markup',
+  wiki: 'markup',
+  xeora: 'markup',
+  xquery: 'markup',
+};
+
+const langData = new Set();
+
+/**
+ *
+ * @param {string|Array} language
+ * @returns {Promise}
+ */
+export async function loadPrismLanguage(language) {
+  // Preserving the order is important for dependencies.
+  const languages = (Array.isArray(language) ? language : [language]).reduce((langs, lang) => {
+    const deps = langDependencies[lang]
+      ? Array.isArray(langDependencies[lang])
+        ? langDependencies[lang]
+        : [langDependencies[lang]]
+      : [];
+    langs.push(...deps, lang);
+    return langs;
+  }, []);
+
+  // Load sequentially
+  for (const lang of languages) {
+    await new Promise((resolve, reject) => {
+      if (langData.has(lang)) return resolve();
+      const script = document.createElement('script');
+      script.src = `https://unpkg.com/prismjs@1.29.0/components/prism-${lang}.min.js`;
+      script.onload = () => {
+        document.head.removeChild(script);
+        langData.add(lang);
+        resolve(lang);
+      };
+      script.onerror = (error) => {
+        document.head.removeChild(script);
+        reject(error);
+      };
+      document.head.appendChild(script);
+    });
+  }
+
+  return langData;
+}
+
+/**
  *
  * @returns {Promise}
  */
-export function loadPrism() {
+export function loadPrismCore() {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = 'https://unpkg.com/prismjs@1.29.0/prism.js';
+    script.src = 'https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js';
     script.dataset.manual = '';
     script.onload = resolve;
     script.onerror = reject;

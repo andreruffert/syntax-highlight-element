@@ -152,4 +152,13 @@
   ::highlight(css-important) {
     color: var(--prettylights-keyword);
   }
+
+  /* Markdown specific tokens */
+  ::highlight(md-title) {
+    color: var(--prettylights-heading);
+  }
+
+  ::highlight(md-list) {
+    color: var(--prettylights-variable);
+  }
 }

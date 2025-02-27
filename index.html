@@ -32,9 +32,11 @@
     <script>
       window.she = window.she || {};
       window.she.config = {
+        languages: ['markup', 'css', 'javascript', 'markdown'],
         // Optional: language specific token type overwrites
         languageTokens: {
           css: ['important'],
+          md: ['title', 'list'],
         }
       }
     </script>
@@ -62,6 +64,21 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
     overflow-x: auto !important;
   }
 }</style></syntax-highlight>
+
+<syntax-highlight language="md">
+  &lt;!-- ... --&gt;
+  # Heading
+
+  ## 123
+
+  __1__
+
+  1. ordered list item 1
+  2. ordered list item 2
+
+  - unordered list item 1
+  - unordered list item 2
+</syntax-highlight>
 
     <script type="module" src="/src/index.js"></script>
     <script>
