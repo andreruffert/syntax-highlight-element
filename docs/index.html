@@ -37,7 +37,7 @@
         }
       }
     </script>
-    <script type="module" async blocking="render" src="https://unpkg.com/color-scheme-switch-element@beta/dist/color-scheme-switch-element.js"></script>
+    <script type="module" async blocking="render" src="https://unpkg.com/color-scheme-switch-element@latest/dist/color-scheme-switch-element.js"></script>
   </head>
   <body>
     <header>
@@ -101,7 +101,8 @@
           </div>
 
           <h2>Usage</h2>
-          <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code> or create your own.</p>
+          <h3>JavaScript</h3>
+          <p>Import as ES module</p>
           <div class="copy-code">
             <syntax-highlight language="js" id="copy-usage-import-js">import 'syntax-highlight-element';</syntax-highlight>
             <clipboard-copy for="copy-usage-import-js" class="button">Copy</clipboard-copy>
@@ -112,12 +113,19 @@
 &lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
           </div>
-          <p>HTML</p>
+          <h3>HTML</h3>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-html">&lt;syntax-highlight language="js"&gt;
   // ...
 &lt;/syntax-highlight&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-html" class="button">Copy</clipboard-copy>
+          </div>
+          <h3>CSS</h3>
+          <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code>.</p>
+          <p>Or via CDN</p>
+          <div class="copy-code">
+            <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;</syntax-highlight>
+            <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
           </div>
 
           <h2>Attributes</h2>

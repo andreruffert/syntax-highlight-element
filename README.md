@@ -18,13 +18,17 @@ The code is highlighted without having to wrap a bunch of `<span>` elements arou
 
 ## Install
 
+Install via npm
+
 ```shell
 npm install syntax-highlight-element
 ```
 
 ## Usage
 
-Make sure to load a theme e.g. `syntax-highlight-element/themes/prettylights.css` or create your own.
+### JavaScript
+
+Import as ES module
 
 ```js
 import 'syntax-highlight-element';
@@ -33,11 +37,10 @@ import 'syntax-highlight-element';
 Or via CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css">
 <script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"></script>
 ```
 
-HTML
+### HTML
 
 ```html
 <syntax-highlight language="js">
@@ -45,7 +48,17 @@ HTML
 </syntax-highlight>
 ```
 
-### Attributes
+### CSS
+
+Make sure to load a theme e.g. `syntax-highlight-element/themes/prettylights.css`.
+
+Or via CDN
+
+```html
+<link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css">
+```
+
+## Attributes
 
 * `language` The code language. The default is `plaintext`. Currently suported languages `html|css|js`.
 * `content-selector` A CSS selector to specify the content element. The default is the element itself.
@@ -57,7 +70,9 @@ HTML
 
 ## License
 
-MIT © [André Ruffert](https://andreruffert.com)
+Distributed under the MIT license. See LICENSE for details. 
+
+© [André Ruffert](https://andreruffert.com)
 
 [prism_github]: https://github.com/PrismJS/prism
 [bramus_github]: https://github.com/bramus
