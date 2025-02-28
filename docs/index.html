@@ -176,31 +176,34 @@
 
       const SUPPORTS_CSS_HIGHLIGHTS = CSS.highlights;
 
+      const DEFAULT_LANGUAGE_EXAMPLE = 'JS';
+
       /**
         * Language example switcher
         */
       const playgroundCode = document.querySelector('[data-section="playground"] syntax-highlight');
       const languageSelector = document.querySelector('#example-language-select');
-
-      // Set initial language example
-      playgroundCode.innerHTML = languageExamples['HTML'].code;
-
       const languageOptions = Object.keys(languageExamples).map((name, index) => {
         const option = document.createElement('option');
         option.value = option.textContent = name;
-        option.selected = !index;
+        option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
         return option
       });
       languageOptions.forEach(option => languageSelector.append(option));
       languageSelector.addEventListener('change', event => {
         const example = languageExamples[event.target.value];
+        playgroundCode.scrollLeft = 0;
+        playgroundCode.parentElement.scrollTop = 0;
         playgroundCode.innerHTML = example.code || 'Not found';
         if (SUPPORTS_CSS_HIGHLIGHTS) {
-          playgroundCode.parentElement.scrollTop = 0;
           playgroundCode.setAttribute('language', example.language);
           playgroundCode.update();
         };
       });
+
+      // Set initial language example
+      playgroundCode.innerHTML = languageExamples[DEFAULT_LANGUAGE_EXAMPLE].code;
+      playgroundCode.setAttribute('language', languageExamples[DEFAULT_LANGUAGE_EXAMPLE].language);
 
       /**
       * Theme preset switcher
