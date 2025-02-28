@@ -63,6 +63,15 @@ Or via CDN
 * `language` The code language. The default is `plaintext`. Currently suported languages `html|css|js`.
 * `content-selector` A CSS selector to specify the content element. The default is the element itself.
 
+## Browser Support
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://web-platform-dx.github.io/web-features/assets/img/baseline-limited-word-dark.svg">
+  <img src="https://web-platform-dx.github.io/web-features/assets/img/baseline-limited-word.svg" width="224" height="63" alt="Baseline limited availability wordmark">
+</picture>
+
+- [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API]
+
 ## Credits
 
 * [Bramus Van Damme][bramus_github] and his [blog post][bramus_blog_post] where I first read about using the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API] for syntax highlighting.
