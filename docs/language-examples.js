@@ -321,7 +321,7 @@ export class SyntaxHighlightElement extends HTMLElement {
     this.clearTokenHighlights();
     this.paintTokenHighlights();
   }
-}`
+}`;
 
 export const languageExamples = {
   HTML: {
@@ -334,6 +334,6 @@ export const languageExamples = {
   },
   JS: {
     language: 'js',
-    code: js
-  }
+    code: js,
+  },
 };
