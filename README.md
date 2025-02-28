@@ -70,7 +70,7 @@ Or via CDN
   <img src="https://web-platform-dx.github.io/web-features/assets/img/baseline-limited-word.svg" width="224" height="63" alt="Baseline limited availability wordmark">
 </picture>
 
-- [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API]
+- [CSS Custom Highlight API][caniuse_mdn-api_highlight]
 
 ## Credits
 
@@ -87,3 +87,4 @@ Distributed under the MIT license. See LICENSE for details.
 [bramus_github]: https://github.com/bramus
 [bramus_blog_post]: https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting
 [MDN_CSS_Custom_Highlight_API]: https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API
+[caniuse_mdn-api_highlight]: https://caniuse.com/mdn-api_highlight
