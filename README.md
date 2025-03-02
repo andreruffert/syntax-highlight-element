@@ -63,6 +63,19 @@ Or via CDN
 * `language` The code language. The default is `plaintext`. Currently suported languages `html|css|js`.
 * `content-selector` A CSS selector to specify the content element. The default is the element itself.
 
+## Configuration
+```js
+/**
+ * @typedef Config
+ * @type {object}
+ * @property {string[]} [languages=['markup', 'css', 'javascript']] - Language grammars to highlight.
+ * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
+ */
+window.she = window.she || {};
+/** @type {Config} */
+window.she.config = {};
+```
+
 ## Browser Support
 
 <picture>
@@ -75,7 +88,7 @@ Or via CDN
 ## Credits
 
 * [Bramus Van Damme][bramus_github] and his [blog post][bramus_blog_post] where I first read about using the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API] for syntax highlighting.
-* [Prism][prism_github]'s tokenizer
+* [Prism][prism_github]'s tokenizer.
 
 ## License
 

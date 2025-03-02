@@ -92,16 +92,16 @@
       </section>
 
       <section data-section="content">
+        <h1>Installation &amp; Usage</h1>
         <article>
-          <h1>Installation & Usage</h1>
-
           <h2>Install</h2>
           <p>Install via npm</p>
           <div class="copy-code">
             <syntax-highlight id="copy-install-npm">npm install syntax-highlight-element</syntax-highlight>
             <clipboard-copy for="copy-install-npm" class="button">Copy</clipboard-copy>
           </div>
-
+        </article>
+        <article>
           <h2>Usage</h2>
           <h3>JavaScript</h3>
           <p>Import as ES module</p>
@@ -111,8 +111,7 @@
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;
-&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
+            <syntax-highlight language="html" id="copy-usage-cdn">&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
           </div>
           <h3>HTML</h3>
@@ -129,23 +128,39 @@
             <syntax-highlight language="html" id="copy-usage-cdn">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn" class="button">Copy</clipboard-copy>
           </div>
-
-          <h2>Attributes</h2>
-          <ul>
-            <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html|css|js</code>.
-            <li><code>content-selector</code> A CSS selector to specify the content element. The default is the element itself.
-          </ul>
         </article>
       </section>
 
       <section data-section="content">
-        <article>
-          <h1>Credits</h1>
-          <ul>
-            <li><a href="https://github.com/bramus" target="_blank" rel="noreferrer">Bramus Van Damme</a> and his <a href="https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting" target="_blank">blog post</a> where I first read about using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API" target="_blank">CSS Custom Highlight API</a> for syntax highlighting.
-            <li><a href="https://github.com/PrismJS/prism" target="_blank" rel="noreferrer">Prism</a>'s tokenizer
-          </ul>
-        </article>
+        <h1>Attributes</h1>
+        <ul>
+          <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html|css|js</code>.
+          <li><code>content-selector</code> A CSS selector to specify the content element. The default is the element itself.
+        </ul>
+      </section>
+
+      <section data-section="content">
+        <h1>Configuration</h1>
+        <div class="copy-code">
+          <syntax-highlight language="js" id="copy-config">/**
+ * @typedef Config
+ * @type {object}
+ * @property {string[]} [languages=['markup', 'css', 'javascript']] - Language grammars to highlight.
+ * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
+ */
+window.she = window.she || {};
+/** @type {Config} */
+window.she.config = {};</syntax-highlight>
+          <clipboard-copy for="copy-config" class="button">Copy</clipboard-copy>
+        </div>
+      </section>
+
+      <section data-section="content">
+        <h1>Credits</h1>
+        <ul>
+          <li><a href="https://github.com/bramus" target="_blank" rel="noreferrer">Bramus Van Damme</a> and his <a href="https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting" target="_blank">blog post</a> where I first read about using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API" target="_blank">CSS Custom Highlight API</a> for syntax highlighting.
+          <li><a href="https://github.com/PrismJS/prism" target="_blank" rel="noreferrer">Prism</a>'s tokenizer.
+        </ul>
       </section>
     </main>
 
