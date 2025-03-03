@@ -43,7 +43,9 @@ export class SyntaxHighlightElement extends HTMLElement {
     super();
     this.#internals = this.attachInternals();
     this.#internals.role = 'code';
+  }
 
+  connectedCallback() {
     // Make focusable via keyboard navigation
     if (!this.hasAttribute('tabindex')) {
       this.setAttribute('tabindex', '0');
