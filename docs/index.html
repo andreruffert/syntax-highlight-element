@@ -59,7 +59,6 @@
         <span class="heading">&lt;syntax-highlight&gt;</span>
         <h1 class="tagline">A custom element that uses the CSS Custom Highlight API for syntax highlighting</h1>
         <p class="badges">
-          <img src="https://img.shields.io/badge/Release%20Candidate-32A9C3" alt="Release Candidate" />
           <a href="https://www.npmjs.com/package/syntax-highlight-element">
             <img src="https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm version" />
           </a>
@@ -69,7 +68,9 @@
         <div class="copy-code-container">
           <div class="copy-code">
             <syntax-highlight id="copy-npm-install">npm install syntax-highlight-element</syntax-highlight>
-            <clipboard-copy for="copy-npm-install" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-npm-install" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
         </div>
         <span aria-hidden="true">~</span>
@@ -98,7 +99,9 @@
           <p>Install via npm</p>
           <div class="copy-code">
             <syntax-highlight id="copy-install-npm">npm install syntax-highlight-element</syntax-highlight>
-            <clipboard-copy for="copy-install-npm" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-install-npm" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
         </article>
         <article>
@@ -107,26 +110,34 @@
           <p>Import as ES module</p>
           <div class="copy-code">
             <syntax-highlight language="js" id="copy-usage-import-js">import 'syntax-highlight-element';</syntax-highlight>
-            <clipboard-copy for="copy-usage-import-js" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-usage-import-js" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-cdn-js" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-usage-cdn-js" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
           <h3>HTML</h3>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-html">&lt;syntax-highlight language="js"&gt;
   // ...
 &lt;/syntax-highlight&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-html" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-usage-html" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
           <h3>CSS</h3>
           <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code>.</p>
           <p>Or via CDN</p>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-cdn-css" class="button">Copy</clipboard-copy>
+            <clipboard-copy for="copy-usage-cdn-css" class="button">
+              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            </clipboard-copy>
           </div>
         </article>
       </section>
@@ -151,7 +162,9 @@
 window.she = window.she || {};
 /** @type {Config} */
 window.she.config = {};</syntax-highlight>
-          <clipboard-copy for="copy-config" class="button">Copy</clipboard-copy>
+          <clipboard-copy for="copy-config" class="button" aria-label="Copy content">
+            <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+          </clipboard-copy>
         </div>
       </section>
 
@@ -183,6 +196,12 @@ window.she.config = {};</syntax-highlight>
       </symbol>
       <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="moon">
         <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="copy">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+      </symbol>
+      <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="check">
+        <path d="M20 6 9 17l-5-5"/>
       </symbol>
     </svg>
 
@@ -248,44 +267,17 @@ window.she.config = {};</syntax-highlight>
 
       document.addEventListener('clipboard-copy', event => {
         const button = event.target;
-        const defaultContent = button.textContent;
-        button.textContent = 'Copied!'
+        const icon = button.querySelector('.icon use');
+        const defaultAriaLabel = button.getAttribute('aria-label');
+
+        button.setAttribute('aria-label', 'Copied!');
+        icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#check');
+
         setTimeout(() => {
-          button.textContent = defaultContent;
+          button.setAttribute('aria-label', defaultAriaLabel);
+          icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#copy');
         }, 1800);
       })
-    </script>
-
-    <script type="module">
-      const systemPreference = getSystemColorScheme();
-
-      document.addEventListener('click', (event) => {
-        const target = event.target.closest('[data-color-scheme-toggle]');
-        if (!target) return;
-        toggleColorScheme();
-      });
-
-      function toggleColorScheme() {
-        const currentPreference = getColorScheme();
-        const newPreference = currentPreference === 'dark' ? 'light' : 'dark';
-        setColorScheme(newPreference);
-      }
-
-      function getColorScheme() {
-        const computedStyle = window.getComputedStyle(document.documentElement);
-        const currentPreference = computedStyle.getPropertyValue('color-scheme');
-        const isSystem = currentPreference === 'light dark';
-        return isSystem ? systemPreference : currentPreference;
-      }
-
-      function setColorScheme(newPreference) {
-        document.documentElement.style.setProperty('color-scheme', newPreference);
-      }
-
-      function getSystemColorScheme() {
-        if (window.matchMedia('(prefers-color-scheme: dark)').matches) return 'dark';
-        return 'light';
-      }
     </script>
   </body>
 </html>

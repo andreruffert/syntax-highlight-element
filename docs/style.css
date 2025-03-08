@@ -1,4 +1,4 @@
-@layer reset, syntax-highlight-element, layout;
+@layer reset, tokens, syntax-highlight-element, layout;
 
 @layer reset {
   *,
@@ -16,61 +16,6 @@
 
 @layer layout {
   :root {
-    --spacing-0: 0rem;
-    --spacing-0\.5: 0.125rem;
-    --spacing-1: 0.25rem;
-    --spacing-1\.5: 0.375rem;
-    --spacing-2: 0.5rem;
-    --spacing-2\.5: 0.625rem;
-    --spacing-3: 0.75rem;
-    --spacing-3\.5: 0.875rem;
-    --spacing-4: 1rem;
-    --spacing-5: 1.25rem;
-    --spacing-6: 1.5rem;
-    --spacing-7: 1.75rem;
-    --spacing-8: 2rem;
-    --spacing-9: 2.25rem;
-    --spacing-10: 2.5rem;
-    --spacing-11: 2.75rem;
-    --spacing-12: 3rem;
-    --spacing-14: 3.5rem;
-    --spacing-16: 4rem;
-    --spacing-20: 5rem;
-    --spacing-24: 6rem;
-    --spacing-28: 7rem;
-    --spacing-32: 8rem;
-
-    --sizes-xs: 20rem;
-    --sizes-sm: 24rem;
-    --sizes-md: 28rem;
-    --sizes-lg: 32rem;
-    --sizes-xl: 36rem;
-    --sizes-2xl: 42rem;
-    --sizes-3xl: 48rem;
-    --sizes-4xl: 56rem;
-    --sizes-5xl: 64rem;
-    --sizes-6xl: 72rem;
-    --sizes-7xl: 80rem;
-    --sizes-8xl: 90rem;
-    --sizes-full: 100%;
-
-    --fonts-sans:
-      ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      "Liberation Mono", "Courier New", monospace;
-
-    --dark-accent: #8cccd5;
-    --dark-canvas: #0d1117;
-    --dark-canvas-text: rgba(255, 255, 245, 0.86);
-    --dark-link-text: var(--dark-accent);
-    --dark-button-face: #151b23;
-
-    --light-accent: #5086a1;
-    --light-canvas: #ffffff;
-    --light-canvas-text: #3c3c43;
-    --light-link-text: var(--light-accent);
-    --light-button-face: #f6f8fa;
-
     font-family: var(--fonts-sans);
     line-height: 1.5;
     font-weight: 400;
@@ -119,6 +64,8 @@
     font-family: var(--fonts-mono);
     padding: var(--spacing-1\.5) var(--spacing-3);
     border-radius: 4px;
+    transition-duration: 0.25s;
+    transition-property: border-color;
   }
   select:hover {
     border-color: light-dark(var(--light-accent), var(--dark-accent));
@@ -152,11 +99,15 @@
       var(--dark-button-face)
     );
     cursor: pointer;
-    transition: border-color 0.25s;
+    user-select: none;
+    transition-duration: 0.25s;
+    transition-property: border-color, opacity, scale;
   }
   button:hover,
   .button:hover {
     border-color: light-dark(var(--light-accent), var(--dark-accent));
+    color: light-dark(var(--light-accent), var(--dark-accent));
+    scale: 1.1;
   }
 
   .alert {
@@ -193,7 +144,6 @@
       padding: var(--spacing-2);
       aspect-ratio: 1;
       align-self: flex-start;
-      user-select: none;
     }
   }
 
@@ -260,23 +210,29 @@
 
   .copy-code {
     display: flex;
-    justify-content: space-between;
+    position: relative;
     inline-size: 0;
     min-inline-size: 100%;
-    border-radius: 0.6rem;
-    /* background-color: light-dark(#f6f8fa, #151b23); */
-    background-color: var(--dark-button-face);
 
     syntax-highlight {
-      border-radius: inherit;
+      flex: 1;
+      border-radius: 0.6rem;
       padding: var(--spacing-4);
     }
 
     .button {
-      align-self: flex-start;
-      margin: var(--spacing-2);
-      font-size: 85%;
+      opacity: 0;
+      position: absolute;
+      inset-inline-end: var(--spacing-2);
+      inset-block-start: var(--spacing-2);
+      padding: var(--spacing-2);
+      aspect-ratio: 1;
     }
+  }
+
+  .copy-code:hover .button,
+  .copy-code:focus-within .button {
+    opacity: 1;
   }
 
   /* Intro */
@@ -319,6 +275,7 @@
     }
 
     .copy-code-container {
+      text-align: initial;
       max-inline-size: var(--sizes-md);
       inline-size: var(--sizes-full);
       padding-block-start: var(--spacing-6);
@@ -328,19 +285,12 @@
   /* Demo playground */
   [data-section="playground"] {
     display: grid;
-    max-inline-size: var(--sizes-4xl);
-    inline-size: var(--sizes-full);
-    margin-inline: auto;
-    padding-block: var(--spacing-6);
-
-    .playground {
-      border-radius: 0.6rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
-        rgba(0, 0, 0, 0.1);
-      block-size: 40dvh;
-      overflow: auto;
-      overscroll-behavior: contain;
-    }
+    padding: var(--spacing-4);
+    border: 1px solid
+      light-dark(var(--light-button-face), var(--dark-button-face));
+    border-radius: 0.6rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
+      rgba(0, 0, 0, 0.1);
 
     .menubar {
       display: flex;
@@ -359,10 +309,20 @@
       font-size: 1rem;
     }
 
+    .playground {
+      inline-size: 0;
+      min-inline-size: 100%;
+      border-radius: inherit;
+    }
+
     syntax-highlight {
       display: block;
-      border-radius: inherit;
       padding: var(--spacing-4);
+      border-radius: inherit;
+      overflow: auto;
+      overscroll-behavior: contain;
+      block-size: 60dvh;
+      max-block-size: var(--sizes-xl);
     }
   }
 
@@ -388,5 +348,64 @@
       margin-block-start: 0;
       margin-block-end: var(--spacing-4);
     }
+  }
+}
+
+@layer tokens {
+  :where(:root) {
+    --spacing-0: 0rem;
+    --spacing-0\.5: 0.125rem;
+    --spacing-1: 0.25rem;
+    --spacing-1\.5: 0.375rem;
+    --spacing-2: 0.5rem;
+    --spacing-2\.5: 0.625rem;
+    --spacing-3: 0.75rem;
+    --spacing-3\.5: 0.875rem;
+    --spacing-4: 1rem;
+    --spacing-5: 1.25rem;
+    --spacing-6: 1.5rem;
+    --spacing-7: 1.75rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-10: 2.5rem;
+    --spacing-11: 2.75rem;
+    --spacing-12: 3rem;
+    --spacing-14: 3.5rem;
+    --spacing-16: 4rem;
+    --spacing-20: 5rem;
+    --spacing-24: 6rem;
+    --spacing-28: 7rem;
+    --spacing-32: 8rem;
+
+    --sizes-xs: 20rem;
+    --sizes-sm: 24rem;
+    --sizes-md: 28rem;
+    --sizes-lg: 32rem;
+    --sizes-xl: 36rem;
+    --sizes-2xl: 42rem;
+    --sizes-3xl: 48rem;
+    --sizes-4xl: 56rem;
+    --sizes-5xl: 64rem;
+    --sizes-6xl: 72rem;
+    --sizes-7xl: 80rem;
+    --sizes-8xl: 90rem;
+    --sizes-full: 100%;
+
+    --fonts-sans:
+      ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+
+    --dark-accent: #8cccd5;
+    --dark-canvas: #0d1117;
+    --dark-canvas-text: rgba(255, 255, 245, 0.86);
+    --dark-link-text: var(--dark-accent);
+    --dark-button-face: #151b23;
+
+    --light-accent: #5086a1;
+    --light-canvas: #ffffff;
+    --light-canvas-text: #3c3c43;
+    --light-link-text: var(--light-accent);
+    --light-button-face: #f6f8fa;
   }
 }
