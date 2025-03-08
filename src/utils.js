@@ -171,7 +171,6 @@ export function loadPrismCore() {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = 'https://unpkg.com/prismjs@1.29.0/components/prism-core.min.js';
-    script.dataset.manual = '';
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
