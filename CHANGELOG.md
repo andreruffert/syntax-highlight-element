@@ -1,3 +1,13 @@
+# [1.0.0-rc.6](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2025-03-08)
+
+
+### Features
+
+* allow opt-out of `define()` ([5251dfd](https://github.com/andreruffert/syntax-highlight-element/commit/5251dfdbfe57ca112ad7088bd0a3d1c384d4f539))
+* config languages ([aecd27e](https://github.com/andreruffert/syntax-highlight-element/commit/aecd27e277d476ebed23a36ea3b037926f15e81e))
+
+
+
 # [1.0.0-rc.5](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.4...v1.0.0-rc.5) (2025-02-24)
 
 
