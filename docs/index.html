@@ -19,7 +19,6 @@
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/themes/prettylights.css" data-she-theme>
-
     <script>
       // Ensure the event listener is setup before the initial `color-scheme-switch` event gets fired.
       document.addEventListener('color-scheme-switch', event => {
@@ -60,16 +59,16 @@
         <h1 class="tagline">A custom element that uses the CSS Custom Highlight API for syntax highlighting</h1>
         <p class="badges">
           <a href="https://www.npmjs.com/package/syntax-highlight-element">
-            <img src="https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm version" />
+            <img src="https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" height="20" alt="npm version" />
           </a>
-          <a href="https://www.npmjs.com/package/syntax-highlight-element"><img src="https://img.shields.io/npm/dm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" alt="npm downloads"></a>
-          <a href="https://github.com/andreruffert/syntax-highlight-element"><img src="https://img.shields.io/badge/source-a?logo=github&color=1B3C4A" alt="GitHub"></a>
+          <a href="https://www.npmjs.com/package/syntax-highlight-element"><img src="https://img.shields.io/npm/dm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A" height="20" alt="npm downloads"></a>
+          <a href="https://github.com/andreruffert/syntax-highlight-element"><img src="https://img.shields.io/badge/source-a?logo=github&color=1B3C4A" height="20" alt="Source on GitHub"></a>
         </p>
         <div class="copy-code-container">
           <div class="copy-code">
             <syntax-highlight id="copy-npm-install">npm install syntax-highlight-element</syntax-highlight>
-            <clipboard-copy for="copy-npm-install" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-npm-install" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
         </div>
@@ -99,8 +98,8 @@
           <p>Install via npm</p>
           <div class="copy-code">
             <syntax-highlight id="copy-install-npm">npm install syntax-highlight-element</syntax-highlight>
-            <clipboard-copy for="copy-install-npm" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-install-npm" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
         </article>
@@ -110,15 +109,15 @@
           <p>Import as ES module</p>
           <div class="copy-code">
             <syntax-highlight language="js" id="copy-usage-import-js">import 'syntax-highlight-element';</syntax-highlight>
-            <clipboard-copy for="copy-usage-import-js" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-usage-import-js" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-cdn-js" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-usage-cdn-js" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
           <h3>HTML</h3>
@@ -126,8 +125,8 @@
             <syntax-highlight language="html" id="copy-usage-html">&lt;syntax-highlight language="js"&gt;
   // ...
 &lt;/syntax-highlight&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-html" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-usage-html" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
           <h3>CSS</h3>
@@ -135,8 +134,8 @@
           <p>Or via CDN</p>
           <div class="copy-code">
             <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;</syntax-highlight>
-            <clipboard-copy for="copy-usage-cdn-css" class="button">
-              <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <clipboard-copy for="copy-usage-cdn-css" class="button" aria-label="Copy content">
+              <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
           </div>
         </article>
@@ -163,7 +162,7 @@ window.she = window.she || {};
 /** @type {Config} */
 window.she.config = {};</syntax-highlight>
           <clipboard-copy for="copy-config" class="button" aria-label="Copy content">
-            <svg class="icon" width="1em" height="1em"><use xlink:href="#copy"></use></svg>
+            <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
           </clipboard-copy>
         </div>
       </section>
@@ -218,8 +217,8 @@ window.she.config = {};</syntax-highlight>
       }
 
       /**
-        * Language example switcher
-        */
+       * Language example switcher
+       */
       const playgroundCode = document.querySelector('[data-section="playground"] syntax-highlight');
       const languageSelector = document.querySelector('#example-language-select');
       const languageOptions = Object.keys(languageExamples).map((name, index) => {
@@ -245,8 +244,8 @@ window.she.config = {};</syntax-highlight>
       playgroundCode.setAttribute('language', languageExamples[DEFAULT_LANGUAGE_EXAMPLE].language);
 
       /**
-      * Theme preset switcher
-      */
+       * Theme preset switcher
+       */
       const themeStyles = document.querySelector('[data-she-theme]');
       const themeSelector = document.querySelector('#theme-preset-select');
       const themeOptions = Object.keys(themePresets).map((name, index) => {
@@ -269,10 +268,8 @@ window.she.config = {};</syntax-highlight>
         const button = event.target;
         const icon = button.querySelector('.icon use');
         const defaultAriaLabel = button.getAttribute('aria-label');
-
         button.setAttribute('aria-label', 'Copied!');
         icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#check');
-
         setTimeout(() => {
           button.setAttribute('aria-label', defaultAriaLabel);
           icon.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", '#copy');
