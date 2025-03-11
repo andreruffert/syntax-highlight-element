@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@next/dist/themes/prettylights.css" data-she-theme>
+    <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css" data-she-theme>
     <script>
       // Ensure the event listener is setup before the initial `color-scheme-switch` event gets fired.
       document.addEventListener('color-scheme-switch', event => {
@@ -208,7 +208,7 @@ window.she.config = {};</syntax-highlight>
     </svg>
 
     <script type="module">
-      import 'https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.js';
+      import 'https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js';
       import { languageExamples, fetchFileContent } from './language-examples.js'
       import { themePresets } from './theme-presets.js';
 
@@ -285,7 +285,7 @@ window.she.config = {};</syntax-highlight>
             toast.textContent = 'There was a problem loading the theme…'
             toast.showPopover();
           };
-          link.href = `https://unpkg.com/syntax-highlight-element@next/dist/themes/${themePresets[event.target.value]}.css`;
+          link.href = `https://unpkg.com/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.css`;
           document.head.appendChild(link);
         });
       });
