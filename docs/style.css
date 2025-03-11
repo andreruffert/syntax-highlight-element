@@ -61,7 +61,7 @@
     background-color: unset;
     border: 1px solid transparent;
     color: inherit;
-    font-family: var(--fonts-mono);
+    font-family: inherit;
     padding: var(--spacing-1\.5) var(--spacing-3);
     border-radius: 4px;
     transition-duration: 0.25s;
@@ -72,10 +72,7 @@
   }
 
   code {
-    background-color: light-dark(
-      var(--light-button-face),
-      var(--dark-button-face)
-    );
+    background-color: light-dark(var(--light-button-face), var(--dark-button-face));
     border-radius: 0.25rem;
     padding: var(--spacing-0\.5) var(--spacing-1);
   }
@@ -94,10 +91,7 @@
     padding: 0.6em 1.2em;
     font-weight: 500;
     font-family: inherit;
-    background-color: light-dark(
-      var(--light-button-face),
-      var(--dark-button-face)
-    );
+    background-color: light-dark(var(--light-button-face), var(--dark-button-face));
     cursor: pointer;
     user-select: none;
     transition-duration: 0.25s;
@@ -118,8 +112,7 @@
     text-wrap: balance;
     gap: var(--spacing-2);
     padding: var(--spacing-6) var(--spacing-4);
-    border-block-end: 3px solid
-      light-dark(var(--light-accent), var(--dark-accent));
+    border-block-end: 3px solid light-dark(var(--light-accent), var(--dark-accent));
 
     p {
       margin: 0;
@@ -132,12 +125,8 @@
     justify-content: flex-end;
     flex-wrap: wrap;
     gap: var(--spacing-5);
-    background-color: light-dark(
-      var(--light-button-face-muted),
-      var(--dark-button-face-muted)
-    );
-    border-block-end: 1px solid
-      light-dark(var(--light-button-face), var(--dark-button-face));
+    background-color: light-dark(var(--light-button-face-muted), var(--dark-button-face-muted));
+    border-block-end: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
     padding: var(--spacing-6) var(--spacing-4);
 
     color-scheme-switch.button {
@@ -195,8 +184,7 @@
   }
 
   footer {
-    border-block-start: 1px solid
-      light-dark(var(--light-button-face), var(--dark-button-face));
+    border-block-start: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
     text-align: center;
     margin-inline: auto;
     margin-block-start: auto;
@@ -243,6 +231,7 @@
     gap: var(--spacing-4);
     text-align: center;
     text-wrap: balance;
+    padding-block-end: var(--spacing-24);
 
     .emoji {
       font-size: clamp(2rem, 2vw + 2rem, 5rem);
@@ -285,12 +274,21 @@
   /* Demo playground */
   [data-section="playground"] {
     display: grid;
-    padding: var(--spacing-4);
-    border: 1px solid
-      light-dark(var(--light-button-face), var(--dark-button-face));
+    padding: var(--spacing-3);
+    border: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
     border-radius: 0.6rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px
-      rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+
+    .playground-title {
+      background-color: light-dark(var(--light-button-face), var(--dark-button-face));
+      border-radius: 0.4rem;
+      font-size: 85%;
+      font-weight: 400;
+      line-height: 1;
+      text-align: center;
+      margin: 0;
+      padding: var(--spacing-2);
+    }
 
     .menubar {
       display: flex;
@@ -298,21 +296,45 @@
       padding: var(--spacing-4);
       overflow: auto;
     }
-
     .menubar__item {
       display: flex;
       gap: var(--spacing-2);
       align-items: center;
     }
-
     .menubar__item select {
       font-size: 1rem;
     }
 
-    .playground {
+    .playground-code {
       inline-size: 0;
       min-inline-size: 100%;
-      border-radius: inherit;
+      border-radius: 0.4rem;
+      position: relative;
+    }
+
+    .playground-code .loader {
+      mix-blend-mode: exclusion;
+      width: fit-content;
+      font-family: monospace;
+      font-size: 1rem;
+      clip-path: inset(0 3ch 0 0);
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      inset-inline-end: var(--spacing-4);
+      inset-block-start: var(--spacing-4);
+      transition: opacity 0.25s;
+    }
+    .playground-code .loader:before {
+      content: "Loading...";
+    }
+
+    .playground-code[data-loading] .loader {
+      opacity: 1;
+      animation: loader 1s steps(4) infinite;
+    }
+    .playground-code[data-loading] syntax-highlight {
+      opacity: 0.4;
     }
 
     syntax-highlight {
@@ -323,6 +345,7 @@
       overscroll-behavior: contain;
       block-size: 60dvh;
       max-block-size: var(--sizes-xl);
+      transition: opacity 0.25s;
     }
   }
 
@@ -347,6 +370,39 @@
     .copy-code {
       margin-block-start: 0;
       margin-block-end: var(--spacing-4);
+    }
+  }
+
+  .toast {
+    background-color: light-dark(var(--light-button-face), var(--dark-button-face));
+    border: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
+    border-radius: 0.4rem;
+    font-size: 85%;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    padding: var(--spacing-4) var(--spacing-4);
+    width: var(--sizes-xs);
+    margin: unset;
+    inset: unset;
+    inset-inline-end: var(--spacing-8);
+    inset-block-end: var(--spacing-8);
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.25s, transform .25s;
+  }
+
+  .toast:popover-open {
+    transform: translateY(0);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes loader {
+    to {
+      clip-path: inset(0 -1ch 0 0);
     }
   }
 }
@@ -393,8 +449,8 @@
 
     --fonts-sans:
       ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-      "Liberation Mono", "Courier New", monospace;
+    --fonts-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
 
     --dark-accent: #8cccd5;
     --dark-canvas: #0d1117;

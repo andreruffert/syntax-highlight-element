@@ -72,21 +72,21 @@
             </clipboard-copy>
           </div>
         </div>
-        <span aria-hidden="true">~</span>
       </section>
 
       <section data-section="playground">
+        <h2 class="playground-title">Demo Playground</h2>
         <div class="menubar">
-          <div class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <label class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             <select aria-label="Code language" id="example-language-select"></select>
-          </div>
-          <div class="menubar__item">
+          </label>
+          <label class="menubar__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v4"/><path d="M17 2a1 1 0 0 1 1 1v9H6V3a1 1 0 0 1 1-1z"/><path d="M6 12a1 1 0 0 0-1 1v1a2 2 0 0 0 2 2h2a1 1 0 0 1 1 1v2.9a2 2 0 1 0 4 0V17a1 1 0 0 1 1-1h2a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1"/></svg>
             <select aria-label="Theme" id="theme-preset-select"></select>
-          </div>
-          <div class="menubar__item" style="margin-inline-start: auto"><small>Playground</small></div>
+          </label>
         </div>
-        <div class="playground">
+        <div class="playground-code" data-loading>
+          <div class="loader"></div>
           <syntax-highlight language="html"></syntax-highlight>
         </div>
       </section>
@@ -181,6 +181,8 @@ window.she.config = {};</syntax-highlight>
       <p>Released under the MIT License.</p>
     </footer>
 
+    <div class="toast" popover></div>
+
     <svg width="0" height="0" aria-hidden="true" hidden>
       <symbol xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" id="sun">
         <circle cx="12" cy="12" r="4"></circle>
@@ -206,58 +208,85 @@ window.she.config = {};</syntax-highlight>
 
     <script type="module">
       import 'https://unpkg.com/syntax-highlight-element@next/dist/syntax-highlight-element.js';
-      import { languageExamples } from './language-examples.js'
+      import { languageExamples, fetchFileContent } from './language-examples.js'
       import { themePresets } from './theme-presets.js';
 
       const DEFAULT_LANGUAGE_EXAMPLE = 'JS';
       const SUPPORTS_CSS_HIGHLIGHTS = CSS.highlights;
 
-      if (!SUPPORTS_CSS_HIGHLIGHTS) {
-        document.querySelector('[data-alert="no-support"]').removeAttribute('hidden')
-      }
+      document.addEventListener('DOMContentLoaded', async () => {
+        if (!SUPPORTS_CSS_HIGHLIGHTS) {
+          document.querySelector('[data-alert="no-support"]').removeAttribute('hidden')
+        }
 
-      /**
-       * Language example switcher
-       */
-      const playgroundCode = document.querySelector('[data-section="playground"] syntax-highlight');
-      const languageSelector = document.querySelector('#example-language-select');
-      const languageOptions = Object.keys(languageExamples).map((name, index) => {
-        const option = document.createElement('option');
-        option.value = option.textContent = name;
-        option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
-        return option
-      });
-      languageOptions.forEach(option => languageSelector.append(option));
-      languageSelector.addEventListener('change', event => {
-        const example = languageExamples[event.target.value];
-        playgroundCode.scrollLeft = 0;
-        playgroundCode.parentElement.scrollTop = 0;
-        playgroundCode.innerHTML = example.code || 'Not found';
-        if (SUPPORTS_CSS_HIGHLIGHTS) {
-          playgroundCode.setAttribute('language', example.language);
-          playgroundCode.update();
-        };
-      });
+        /**
+         * Set initial language example
+         */
+        const playgroundCode = document.querySelector('.playground-code syntax-highlight');
+        const defaultExample = languageExamples[DEFAULT_LANGUAGE_EXAMPLE];
+        const togglePlaygroundLoading = () => playgroundCode.parentElement.toggleAttribute('data-loading');
+        playgroundCode.innerHTML = await fetchFileContent(defaultExample.file, { escapeHtml: defaultExample?.escapeHtml });
+        playgroundCode.setAttribute('language', defaultExample.language);
+        togglePlaygroundLoading();
 
-      // Set initial language example
-      playgroundCode.innerHTML = languageExamples[DEFAULT_LANGUAGE_EXAMPLE].code;
-      playgroundCode.setAttribute('language', languageExamples[DEFAULT_LANGUAGE_EXAMPLE].language);
+        /**
+         * Language example switcher
+         */
+        const languageSelector = document.querySelector('#example-language-select');
+        const languageOptions = Object.keys(languageExamples).map((name, index) => {
+          const option = document.createElement('option');
+          option.value = option.textContent = name;
+          option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
+          return option;
+        });
+        languageOptions.forEach(option => languageSelector.append(option));
+        languageSelector.addEventListener('change', async event => {
+          togglePlaygroundLoading();
+          playgroundCode.textContent = '';
 
-      /**
-       * Theme preset switcher
-       */
-      const themeStyles = document.querySelector('[data-she-theme]');
-      const themeSelector = document.querySelector('#theme-preset-select');
-      const themeOptions = Object.keys(themePresets).map((name, index) => {
-        const option = document.createElement('option');
-        option.value = option.textContent = name;
-        option.selected = !index;
-        return option
-      });
-      themeOptions.forEach(option => themeSelector.append(option));
-      themeSelector.addEventListener('change', event => {
-        const theme = themePresets[event.target.value] || 'Not found';
-        themeStyles.href = `https://unpkg.com/syntax-highlight-element@next/dist/themes/${theme}.css`
+          const example = languageExamples[event.target.value];
+          const exampleContent = await fetchFileContent(example.file, { escapeHtml: example?.escapeHtml });
+          playgroundCode.innerHTML = exampleContent || 'Not found';
+          togglePlaygroundLoading();
+
+          if (SUPPORTS_CSS_HIGHLIGHTS) {
+            playgroundCode.setAttribute('language', example.language);
+            playgroundCode.update();
+          };
+        });
+
+        /**
+         * Theme preset switcher
+         */
+        const themeSelector = document.querySelector('#theme-preset-select');
+        const themeOptions = Object.keys(themePresets).map((name, index) => {
+          const option = document.createElement('option');
+          option.value = option.textContent = name;
+          option.selected = !index;
+          return option
+        });
+        themeOptions.forEach(option => themeSelector.append(option));
+        themeSelector.addEventListener('change', event => {
+          console.log(event)
+          togglePlaygroundLoading();
+          const oldThemeStyles = document.querySelector('[data-she-theme]');
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.dataset.sheTheme = '';
+          link.onload = () => {
+            let timeoutID;
+            togglePlaygroundLoading();
+            document.head.removeChild(oldThemeStyles);
+          }
+          link.onerror = () => {
+            togglePlaygroundLoading();
+            const toast = document.querySelector('.toast');
+            toast.textContent = 'There was a problem loading the theme…'
+            toast.showPopover();
+          };
+          link.href = `https://unpkg.com/syntax-highlight-element@next/dist/themes/${themePresets[event.target.value]}.css`;
+          document.head.appendChild(link);
+        });
       });
     </script>
 
