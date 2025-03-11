@@ -1,3 +1,7 @@
+# [1.0.0](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.6...v1.0.0) (2025-03-11)
+
+
+
 # [1.0.0-rc.6](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.5...v1.0.0-rc.6) (2025-03-08)
 
 
