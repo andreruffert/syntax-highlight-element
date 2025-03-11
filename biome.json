@@ -13,7 +13,8 @@
     "ignore": ["package.json"],
     "enabled": true,
     "indentStyle": "space",
-    "indentWidth": 2
+    "indentWidth": 2,
+    "lineWidth": 100
   },
   "organizeImports": {
     "enabled": true
@@ -26,8 +27,7 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
-      "lineWidth": 100
+      "quoteStyle": "single"
     }
   }
 }
