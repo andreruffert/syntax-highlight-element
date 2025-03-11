@@ -367,6 +367,16 @@
     }
 
     p,
+    li {
+      text-wrap: balance;
+    }
+
+    li + li {
+      margin-block-start: var(--spacing-2);
+    }
+
+    p,
+    ul,
     .copy-code {
       margin-block-start: 0;
       margin-block-end: var(--spacing-4);

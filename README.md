@@ -58,6 +58,8 @@ Or via CDN
 <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css">
 ```
 
+Currently there are only limited [themes](https://github.com/andreruffert/syntax-highlight-element/tree/main/src/themes) available/converted. You can always create your own theme. Contributions are also very welcome.
+
 ## Attributes
 
 * `language` The code language. The default is `plaintext`. Currently suported languages `html|css|js`.
