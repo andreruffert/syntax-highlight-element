@@ -213,7 +213,7 @@ window.she.config = {};</syntax-highlight>
       import { themePresets } from './theme-presets.js';
 
       const DEFAULT_LANGUAGE_EXAMPLE = 'JS';
-      const SUPPORTS_CSS_HIGHLIGHTS = CSS.highlights;
+      const SUPPORTS_CSS_HIGHLIGHTS = Boolean(CSS.highlights);
 
       document.addEventListener('DOMContentLoaded', async () => {
         if (!SUPPORTS_CSS_HIGHLIGHTS) {
@@ -230,6 +230,11 @@ window.she.config = {};</syntax-highlight>
         playgroundCode.setAttribute('language', defaultExample.language);
         togglePlaygroundLoading();
 
+        if (SUPPORTS_CSS_HIGHLIGHTS) {
+          await customElements.whenDefined('syntax-highlight');
+          playgroundCode.update();
+        };
+
         /**
          * Language example switcher
          */
@@ -244,14 +249,13 @@ window.she.config = {};</syntax-highlight>
         languageSelector.addEventListener('change', async event => {
           togglePlaygroundLoading();
           playgroundCode.textContent = '';
-
           const example = languageExamples[event.target.value];
           const exampleContent = await fetchFileContent(example.file, { escapeHtml: example?.escapeHtml });
           playgroundCode.innerHTML = exampleContent || 'Not found';
+          playgroundCode.setAttribute('language', example.language);
           togglePlaygroundLoading();
 
           if (SUPPORTS_CSS_HIGHLIGHTS) {
-            playgroundCode.setAttribute('language', example.language);
             playgroundCode.update();
           };
         });
@@ -268,22 +272,20 @@ window.she.config = {};</syntax-highlight>
         });
         themeOptions.forEach(option => themeSelector.append(option));
         themeSelector.addEventListener('change', event => {
-          console.log(event)
           togglePlaygroundLoading();
           const oldThemeStyles = document.querySelector('[data-she-theme]');
           const link = document.createElement('link');
           link.rel = 'stylesheet';
           link.dataset.sheTheme = '';
           link.onload = () => {
-            let timeoutID;
-            togglePlaygroundLoading();
             document.head.removeChild(oldThemeStyles);
+            togglePlaygroundLoading();
           }
           link.onerror = () => {
-            togglePlaygroundLoading();
             const toast = document.querySelector('.toast');
             toast.textContent = 'There was a problem loading the theme…'
             toast.showPopover();
+            togglePlaygroundLoading();
           };
           link.href = `https://unpkg.com/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.css`;
           document.head.appendChild(link);
