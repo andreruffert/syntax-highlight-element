@@ -79,11 +79,11 @@
         <h2 class="playground-title">Demo Playground</h2>
         <div class="menubar">
           <label class="menubar__item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-            <select aria-label="Code language" id="example-language-select"></select>
+            <select aria-label="Code language" id="example-language-select" disabled></select>
           </label>
           <label class="menubar__item">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v2"/><path d="M14 2v4"/><path d="M17 2a1 1 0 0 1 1 1v9H6V3a1 1 0 0 1 1-1z"/><path d="M6 12a1 1 0 0 0-1 1v1a2 2 0 0 0 2 2h2a1 1 0 0 1 1 1v2.9a2 2 0 1 0 4 0V17a1 1 0 0 1 1-1h2a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1"/></svg>
-            <select aria-label="Theme" id="theme-preset-select"></select>
+            <select aria-label="Theme" id="theme-preset-select" disabled></select>
           </label>
         </div>
         <div class="playground-code" data-loading>
@@ -229,12 +229,13 @@ window.she.config = {};</syntax-highlight>
         const togglePlaygroundLoading = () => playgroundCode.parentElement.toggleAttribute('data-loading');
         playgroundCode.innerHTML = await fetchFileContent(defaultExample.file, { escapeHtml: defaultExample?.escapeHtml });
         playgroundCode.setAttribute('language', defaultExample.language);
-        togglePlaygroundLoading();
 
         if (SUPPORTS_CSS_HIGHLIGHTS) {
           await customElements.whenDefined('syntax-highlight');
           playgroundCode.update();
         };
+
+        togglePlaygroundLoading();
 
         /**
          * Language example switcher
@@ -247,6 +248,7 @@ window.she.config = {};</syntax-highlight>
           return option;
         });
         languageOptions.forEach(option => languageSelector.append(option));
+        languageSelector.removeAttribute('disabled');
         languageSelector.addEventListener('change', async event => {
           togglePlaygroundLoading();
           playgroundCode.textContent = '';
@@ -254,11 +256,12 @@ window.she.config = {};</syntax-highlight>
           const exampleContent = await fetchFileContent(example.file, { escapeHtml: example?.escapeHtml });
           playgroundCode.innerHTML = exampleContent || 'Not found';
           playgroundCode.setAttribute('language', example.language);
-          togglePlaygroundLoading();
 
           if (SUPPORTS_CSS_HIGHLIGHTS) {
             playgroundCode.update();
           };
+
+          togglePlaygroundLoading();
         });
 
         /**
@@ -272,6 +275,7 @@ window.she.config = {};</syntax-highlight>
           return option
         });
         themeOptions.forEach(option => themeSelector.append(option));
+        themeSelector.removeAttribute('disabled');
         themeSelector.addEventListener('change', event => {
           togglePlaygroundLoading();
           const oldThemeStyles = document.querySelector('[data-she-theme]');

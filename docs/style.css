@@ -67,7 +67,7 @@
     transition-duration: 0.25s;
     transition-property: border-color;
   }
-  select:hover {
+  select:not([disabled]):hover {
     border-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
@@ -300,6 +300,9 @@
       gap: var(--spacing-4);
       padding: var(--spacing-4);
       overflow: auto;
+    }
+    .menubar:has([disabled]) {
+      opacity: 0.4;
     }
     .menubar__item {
       display: flex;
