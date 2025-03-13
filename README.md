@@ -37,7 +37,7 @@ import 'syntax-highlight-element';
 Or via CDN
 
 ```html
-<script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm"></script>
 ```
 
 ### HTML
@@ -55,14 +55,14 @@ Make sure to load a theme e.g. `syntax-highlight-element/themes/prettylights.css
 Or via CDN
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css">
 ```
 
 Currently there are only limited [themes](https://github.com/andreruffert/syntax-highlight-element/tree/main/src/themes) available/converted. You can always create your own theme. Contributions are also very welcome.
 
 ## Attributes
 
-* `language` The code language. The default is `plaintext`. Currently suported languages `html|css|js`.
+* `language` The code language. The default is `plaintext`. Default suported languages `html|css|js`.
 * `content-selector` A CSS selector to specify the content element. The default is the element itself.
 
 ## Configuration
@@ -77,6 +77,8 @@ window.she = window.she || {};
 /** @type {Config} */
 window.she.config = {};
 ```
+
+Full list of all [languages supported](https://prismjs.com/#supported-languages) by the prism tokenizer.
 
 ## Browser Support
 

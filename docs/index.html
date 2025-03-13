@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css" data-she-theme>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css" data-she-theme>
     <script>
       // Ensure the event listener is setup before the initial `color-scheme-switch` event gets fired.
       document.addEventListener('color-scheme-switch', event => {
@@ -31,12 +31,13 @@
       // Optional: language specific token type overwrites
       window.she = window.she || {};
       window.she.config = {
+        languages: ['markup', 'css', 'javascript'],
         languageTokens: {
           css: ['important'],
         }
       }
     </script>
-    <script type="module" async blocking="render" src="https://unpkg.com/color-scheme-switch-element@latest/dist/color-scheme-switch-element.js"></script>
+    <script type="module" async blocking="render" src="https://cdn.jsdelivr.net/npm/color-scheme-switch-element/+esm"></script>
   </head>
   <body>
     <div class="alert" data-alert="no-support" hidden>
@@ -116,7 +117,7 @@
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js"&gt;&lt;/script&gt;</syntax-highlight>
+            <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm"&gt;&lt;/script&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn-js" class="button" aria-label="Copy content">
               <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
@@ -134,7 +135,7 @@
           <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code>.</p>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://unpkg.com/syntax-highlight-element@latest/dist/themes/prettylights.css"&gt;</syntax-highlight>
+            <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css"&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn-css" class="button" aria-label="Copy content">
               <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
@@ -146,7 +147,7 @@
       <section data-section="content">
         <h1>Attributes</h1>
         <ul>
-          <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Currently suported languages <code>html|css|js</code>.
+          <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Default suported languages <code>html|css|js</code>.
           <li><code>content-selector</code> A CSS selector to specify the content element. The default is the element itself.
         </ul>
       </section>
@@ -167,6 +168,7 @@ window.she.config = {};</syntax-highlight>
             <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
           </clipboard-copy>
         </div>
+        <p>Full list of all <a href="https://prismjs.com/#supported-languages" target="_blank" rel="noreferrer">languages supported</a> by the prism tokenizer.</p>
       </section>
 
       <section data-section="content">
@@ -209,7 +211,8 @@ window.she.config = {};</syntax-highlight>
     </svg>
 
     <script type="module">
-      import 'https://unpkg.com/syntax-highlight-element@latest/dist/syntax-highlight-element.js';
+      import 'https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm';
+
       import { languageExamples, fetchFileContent } from './language-examples.js'
       import { themePresets } from './theme-presets.js';
 
@@ -292,14 +295,14 @@ window.she.config = {};</syntax-highlight>
             toast.showPopover();
             togglePlaygroundLoading();
           };
-          link.href = `https://unpkg.com/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.css`;
+          link.href = `https://cdn.jsdelivr.net/npm/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.min.css`;
           document.head.appendChild(link);
         });
       });
     </script>
 
     <script type="module">
-      import 'https://unpkg.com/@github/clipboard-copy-element@1.3.0/dist/index.js';
+      import 'https://cdn.jsdelivr.net/npm/@github/clipboard-copy-element@1.3.0/+esm';
 
       document.addEventListener('clipboard-copy', event => {
         const button = event.target;
