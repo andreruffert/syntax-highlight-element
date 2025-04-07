@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0...v1.1.0) (2025-04-07)
+
+
+### Features
+
+* **themes/prettylights:** opt in to color-scheme property ([a9fb948](https://github.com/andreruffert/syntax-highlight-element/commit/a9fb948d73066333162d5d4b462753bff6dd2245))
+
+
+
 # [1.0.0](https://github.com/andreruffert/syntax-highlight-element/compare/v1.0.0-rc.6...v1.0.0) (2025-03-11)
 
 
