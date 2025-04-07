@@ -71,6 +71,10 @@
     border-color: light-dark(var(--light-accent), var(--dark-accent));
   }
 
+  syntax-highlight {
+    color-scheme: inherit;
+  }
+
   code {
     background-color: light-dark(var(--light-button-face), var(--dark-button-face));
     border-radius: 0.25rem;
