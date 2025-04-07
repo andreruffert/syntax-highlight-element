@@ -6,24 +6,24 @@
 
 @layer syntax-highlight-element {
   syntax-highlight {
-    --prettylights-bg: #f6f8fa;
-    --prettylights-fg: #1f2328;
-    --prettylights-comment: #59636e;
-    --prettylights-constant: #0550ae;
-    --prettylights-constant-other-reference-link: #0a3069;
-    --prettylights-entity: #6639ba;
-    --prettylights-entity-tag: #0550ae;
-    --prettylights-keyword: #cf222e;
-    --prettylights-bold: #f0f6fc;
-    --prettylights-deleted-bg: #ffebe9;
-    --prettylights-deleted-text: #82071e;
-    --prettylights-heading: #0550ae;
-    --prettylights-inserted-bg: #dafbe1;
-    --prettylights-inserted-text: #116329;
-    --prettylights-italic: #f0f6fc;
-    --prettylights-string: #0a3069;
-    --prettylights-string-regexp: #116329;
-    --prettylights-variable: #953800;
+    --prettylights-bg: light-dark(#f6f8fa, #151b23);
+    --prettylights-fg: light-dark(#1f2328, #f0f6fc);
+    --prettylights-comment: light-dark(#59636e, #9198a1);
+    --prettylights-constant: light-dark(#0550ae, #79c0ff);
+    --prettylights-constant-other-reference-link: light-dark(#0a3069, #a5d6ff);
+    --prettylights-entity: light-dark(#6639ba, #d2a8ff);
+    --prettylights-entity-tag: light-dark(#0550ae, #7ee787);
+    --prettylights-keyword: light-dark(#cf222e, #ff7b72);
+    --prettylights-bold: light-dark(#f0f6fc, #f0f6fc);
+    --prettylights-deleted-bg: light-dark(#ffebe9, #67060c);
+    --prettylights-deleted-text: light-dark(#82071e, #ffdcd7);
+    --prettylights-heading: light-dark(#0550ae, #1f6feb);
+    --prettylights-inserted-bg: light-dark(#dafbe1, #033a16);
+    --prettylights-inserted-text: light-dark(#116329, #aff5b4);
+    --prettylights-italic: light-dark(#f0f6fc, #f0f6fc);
+    --prettylights-string: light-dark(#0a3069, #a5d6ff);
+    --prettylights-string-regexp: light-dark(#116329, #7ee787);
+    --prettylights-variable: light-dark(#953800, #ffa657);
 
     color-scheme: light dark;
     color: var(--prettylights-fg);
@@ -31,29 +31,6 @@
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
     line-height: 1.6;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    syntax-highlight {
-      --prettylights-bg: #151b23;
-      --prettylights-fg: #f0f6fc;
-      --prettylights-comment: #9198a1;
-      --prettylights-constant: #79c0ff;
-      --prettylights-constant-other-reference-link: #a5d6ff;
-      --prettylights-entity: #d2a8ff;
-      --prettylights-entity-tag: #7ee787;
-      --prettylights-keyword: #ff7b72;
-      --prettylights-bold: #f0f6fc;
-      --prettylights-deleted-bg: #67060c;
-      --prettylights-deleted-text: #ffdcd7;
-      --prettylights-heading: #1f6feb;
-      --prettylights-inserted-bg: #033a16;
-      --prettylights-inserted-text: #aff5b4;
-      --prettylights-italic: #f0f6fc;
-      --prettylights-string: #a5d6ff;
-      --prettylights-string-regexp: #7ee787;
-      --prettylights-variable: #ffa657;
-    }
   }
 
   /*
