@@ -5,6 +5,7 @@
 [![Test status](https://img.shields.io/github/actions/workflow/status/andreruffert/syntax-highlight-element/test.yml?label=Test&logo=github&color=32A9C3&labelColor=1B3C4A)](https://github.com/andreruffert/syntax-highlight-element/actions/workflows/test.yml)
 [![npm version](https://img.shields.io/npm/v/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A)](https://www.npmjs.com/package/syntax-highlight-element)
 [![npm downloads](https://img.shields.io/npm/dm/syntax-highlight-element?logo=npm&color=32A9C3&labelColor=1B3C4A)](https://www.npmjs.com/package/syntax-highlight-element)
+[![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/syntax-highlight-element?color=32A9C3&labelColor=1B3C4A)](https://www.jsdelivr.com/package/npm/syntax-highlight-element)
 
 The code is highlighted without having to wrap a bunch of `<span>` elements around each token, thanks to [Prism][prism_github]'s tokenizer and the [CSS Custom Highlight API][MDN_CSS_Custom_Highlight_API].
 
