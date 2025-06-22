@@ -18,7 +18,7 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👓</text></svg>">
 
     <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css" data-she-theme>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/dist/themes/prettylights.min.css" data-she-theme>
     <script>
       // Ensure the event listener is setup before the initial `color-scheme-switch` event gets fired.
       document.addEventListener('color-scheme-switch', event => {
@@ -120,7 +120,7 @@
           </div>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm"&gt;&lt;/script&gt;</syntax-highlight>
+            <syntax-highlight language="html" id="copy-usage-cdn-js">&lt;script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/+esm"&gt;&lt;/script&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn-js" class="button" aria-label="Copy content">
               <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
@@ -138,7 +138,7 @@
           <p>Make sure to load a theme e.g. <code>syntax-highlight-element/themes/prettylights.css</code>.</p>
           <p>Or via CDN</p>
           <div class="copy-code">
-            <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css"&gt;</syntax-highlight>
+            <syntax-highlight language="html" id="copy-usage-cdn-css">&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/dist/themes/prettylights.min.css"&gt;</syntax-highlight>
             <clipboard-copy for="copy-usage-cdn-css" class="button" aria-label="Copy content">
               <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
             </clipboard-copy>
@@ -214,7 +214,7 @@ window.she.config = {};</syntax-highlight>
     </svg>
 
     <script type="module">
-      import 'https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm';
+      import 'https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/+esm';
 
       import { languageExamples, fetchFileContent } from './language-examples.js'
       import { themePresets } from './theme-presets.js';

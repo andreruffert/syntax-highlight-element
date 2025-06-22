@@ -38,7 +38,7 @@ import 'syntax-highlight-element';
 Or via CDN
 
 ```html
-<script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element/+esm"></script>
+<script type="module" src="https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/+esm"></script>
 ```
 
 ### HTML
@@ -56,7 +56,7 @@ Make sure to load a theme e.g. `syntax-highlight-element/themes/prettylights.css
 Or via CDN
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element/dist/themes/prettylights.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/dist/themes/prettylights.min.css">
 ```
 
 Currently there are only limited [themes](https://github.com/andreruffert/syntax-highlight-element/tree/main/src/themes) available/converted. You can always create your own theme. Contributions are also very welcome.
