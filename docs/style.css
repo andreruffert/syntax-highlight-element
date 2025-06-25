@@ -267,7 +267,7 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: .5rem;
+      gap: 0.5rem;
       font-size: 0;
       padding-block-start: var(--spacing-6);
     }
@@ -286,7 +286,9 @@
     padding: var(--spacing-3);
     border: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
     border-radius: 0.6rem;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
 
     .playground-title {
       background-color: light-dark(var(--light-button-face), var(--dark-button-face));
@@ -375,7 +377,7 @@
     }
 
     h2 {
-      font-size: clamp(1rem, 2vw + .75rem, 1.5rem);
+      font-size: clamp(1rem, 2vw + 0.75rem, 1.5rem);
       margin-block-start: var(--spacing-6);
       margin-block-end: var(--spacing-4);
     }
@@ -402,7 +404,9 @@
     border: 1px solid light-dark(var(--light-button-face), var(--dark-button-face));
     border-radius: 0.4rem;
     font-size: 85%;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
     padding: var(--spacing-4) var(--spacing-4);
     width: var(--sizes-xs);
     margin: unset;
@@ -411,7 +415,9 @@
     inset-block-end: var(--spacing-8);
     opacity: 0;
     transform: translateY(100%);
-    transition: opacity 0.25s, transform .25s;
+    transition:
+      opacity 0.25s,
+      transform 0.25s;
   }
 
   .toast:popover-open {
@@ -419,6 +425,7 @@
     opacity: 1;
 
     @starting-style {
+      /* biome-ignore lint/suspicious/noDuplicateProperties: reason */
       opacity: 0;
       transform: translateY(100%);
     }
