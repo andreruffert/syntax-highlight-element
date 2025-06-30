@@ -84,8 +84,8 @@ Full list of all [languages supported](https://prismjs.com/#supported-languages)
 ## Browser Support
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://web-platform-dx.github.io/web-features/assets/img/baseline-limited-word-dark.svg">
-  <img src="https://web-platform-dx.github.io/web-features/assets/img/baseline-limited-word.svg" width="224" height="63" alt="Baseline limited availability wordmark">
+  <source media="(prefers-color-scheme: dark)" srcset="https://web-platform-dx.github.io/web-features/assets/img/baseline-newly-word-dark.svg">
+  <img src="https://web-platform-dx.github.io/web-features/assets/img/baseline-newly-word.svg" width="224" height="63" alt="Baseline newly availability wordmark">
 </picture>
 
 - [CSS Custom Highlight API][caniuse_mdn-api_highlight]
