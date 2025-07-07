@@ -81,6 +81,10 @@ window.she.config = {};
 
 Full list of all [languages supported](https://prismjs.com/#supported-languages) by the prism tokenizer.
 
+## Examples
+
+For examples checkout the [CodePen &lt;syntax-highlight&gt; collection](https://codepen.io/collection/EPYpMJ).
+
 ## Browser Support
 
 <picture>
