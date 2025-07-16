@@ -161,12 +161,18 @@
           <syntax-highlight language="js" id="copy-config">/**
  * @typedef Config
  * @type {object}
- * @property {string[]} [languages=['markup', 'css', 'javascript']] - Language grammars to highlight.
+ * @property {string} prismBaseUrl - Prism base URL to fetch the tokenizer + language data.
+ * @property {string[]} languages - Prism languages.
  * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
  */
+
 window.she = window.she || {};
+
 /** @type {Config} */
-window.she.config = {};</syntax-highlight>
+window.she.config = {
+  prismBaseUrl: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0', // Default
+  languages: ['markup', 'css', 'javascript'], // Default
+};</syntax-highlight>
           <clipboard-copy for="copy-config" class="button" aria-label="Copy content">
             <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
           </clipboard-copy>
@@ -178,7 +184,7 @@ window.she.config = {};</syntax-highlight>
         <h1>Examples</h1>
         <p>For more examples checkout the CodePen <a href="https://codepen.io/collection/EPYpMJ" target="_blank" rel="noreferrer">&lt;syntax-highlight&gt; collection</a>.</p>
       </section>
-      
+
       <section data-section="content">
         <h1>Credits</h1>
         <ul>

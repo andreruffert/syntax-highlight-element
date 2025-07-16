@@ -1,4 +1,4 @@
-import { CONFIG, DEFAULT_LANGUAGES } from './constants';
+import { CONFIG, DEFAULT_LANGUAGES, DEFAULT_PRISM_BASE_URL } from './constants';
 import { loadPrismCore, loadPrismLanguage, setupTokenHighlights, tokenize } from './utils';
 
 const DEFAULT_TAG_NAME = 'syntax-highlight';
@@ -13,8 +13,12 @@ export class SyntaxHighlightElement extends HTMLElement {
     if (!registry.get(tagName)) {
       setupTokenHighlights(CONFIG?.languageTokens || {});
       try {
-        await loadPrismCore();
-        await loadPrismLanguage(CONFIG?.languages || DEFAULT_LANGUAGES);
+        const prismBaseUrl = CONFIG?.prismBaseUrl || DEFAULT_PRISM_BASE_URL;
+        await loadPrismCore(prismBaseUrl);
+        await loadPrismLanguage({
+          baseUrl: prismBaseUrl,
+          language: CONFIG?.languages || DEFAULT_LANGUAGES,
+        });
         registry.define(tagName, SyntaxHighlightElement);
         return SyntaxHighlightElement;
       } catch (error) {

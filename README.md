@@ -71,12 +71,18 @@ Currently there are only limited [themes](https://github.com/andreruffert/syntax
 /**
  * @typedef Config
  * @type {object}
- * @property {string[]} [languages=['markup', 'css', 'javascript']] - Language grammars to highlight.
+ * @property {string} prismBaseUrl - Prism base URL to fetch the tokenizer + language data.
+ * @property {string[]} languages - Language grammars to highlight.
  * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
  */
+
 window.she = window.she || {};
+
 /** @type {Config} */
-window.she.config = {};
+window.she.config = {
+  prismBaseUrl: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0', // Default
+  languages: ['markup', 'css', 'javascript'], // Default
+};
 ```
 
 Full list of all [languages supported](https://prismjs.com/#supported-languages) by the prism tokenizer.

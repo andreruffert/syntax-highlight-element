@@ -1,5 +1,3 @@
-const PRISM_CDN_URL = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
-
 /**
  * Create & register the token `Highlight`'s in the `CSS.highlights` registry.
  * This enables the use of `::highlight(tokenType)` in CSS to style them.
@@ -128,10 +126,11 @@ const langData = new Set();
 
 /**
  *
+ * @param {string} baseUrl - Prism base URL to fetch the language data
  * @param {string|Array} language
  * @returns {Promise}
  */
-export async function loadPrismLanguage(language) {
+export async function loadPrismLanguage({ baseUrl, language }) {
   // Preserving the order is important for dependencies.
   const languages = (Array.isArray(language) ? language : [language]).reduce((langs, lang) => {
     const deps = langDependencies[lang]
@@ -148,7 +147,7 @@ export async function loadPrismLanguage(language) {
     await new Promise((resolve, reject) => {
       if (langData.has(lang)) return resolve();
       const script = document.createElement('script');
-      script.src = `${PRISM_CDN_URL}/components/prism-${lang}.min.js`;
+      script.src = `${baseUrl}/components/prism-${lang}.min.js`;
       script.onload = () => {
         document.head.removeChild(script);
         langData.add(lang);
@@ -166,13 +165,13 @@ export async function loadPrismLanguage(language) {
 }
 
 /**
- *
+ * @param {string} baseUrl - Prism base URL to fetch the core (tokenizer)
  * @returns {Promise}
  */
-export function loadPrismCore() {
+export function loadPrismCore(baseUrl) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = `${PRISM_CDN_URL}/components/prism-core.min.js`;
+    script.src = `${baseUrl}/components/prism-core.min.js`;
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
