@@ -39,6 +39,10 @@ export class SyntaxHighlightElement extends HTMLElement {
     return this.getAttribute('language') || 'plaintext';
   }
 
+  set language(language) {
+    this.setAttribute('language', language);
+  }
+
   get highlights() {
     return this.#highlights;
   }
