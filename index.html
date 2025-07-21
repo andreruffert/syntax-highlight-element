@@ -32,8 +32,7 @@
     <script>
       window.she = window.she || {};
       window.she.config = {
-        prismBaseUrl: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0', // Default
-        languages: ['html', 'css', 'js', 'jsx', 'md'],
+        languages: ['html', 'css', 'js', 'jsx', 'md'], // Default
         // Optional: language specific token type overwrites
         languageTokens: {
           css: ['important'],
@@ -81,12 +80,23 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
   - unordered list item 2
 </syntax-highlight>
 
-<syntax-highlight language="jsx">
-  {/* ... */}
-  &lt;Component>&lt;/Component&gt;
+<syntax-highlight language="jsx">{/* ... */}
+&lt;Component attr="value">
+  {children}
+&lt;/Component&gt;
 </syntax-highlight>
 
-    <script type="module" src="/src/index.js"></script>
+    <script type="module">
+      // Manually loading prism dependencies
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markup.min.js'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-css.min.js'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-clike.min.js'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markdown.min.js'
+
+      import '/src/index.js'
+    </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keyup', event => {
