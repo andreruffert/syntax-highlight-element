@@ -125,22 +125,36 @@ const langDependencies = {
 const langData = new Set();
 
 /**
+ * Get the direct language dependency and all of its transitive dependencies.
+ * Preserving the order is important for dependencies.
+ * @param {string|Array} language
+ * @returns
+ */
+export function resolveLanguageDependencies(language) {
+  const resolvedDependencies = Array.from(language).reduce((langs, lang) => {
+    const deps = langDependencies[lang]
+      ? Array.isArray(langDependencies[lang])
+        ? langDependencies[lang]
+        : [langDependencies[lang]]
+      : [];
+
+    // Add direct + transitive dependencies
+    langs.push(...resolveLanguageDependencies(deps), lang);
+    return langs;
+  }, []);
+
+  // Deduplicate dependencies
+  return Array.from(new Set(resolvedDependencies));
+}
+
+/**
  *
  * @param {string} baseUrl - Prism base URL to fetch the language data
  * @param {string|Array} language
  * @returns {Promise}
  */
 export async function loadPrismLanguage({ baseUrl, language }) {
-  // Preserving the order is important for dependencies.
-  const languages = (Array.isArray(language) ? language : [language]).reduce((langs, lang) => {
-    const deps = langDependencies[lang]
-      ? Array.isArray(langDependencies[lang])
-        ? langDependencies[lang]
-        : [langDependencies[lang]]
-      : [];
-    langs.push(...deps, lang);
-    return langs;
-  }, []);
+  const languages = resolveLanguageDependencies(language);
 
   // Load sequentially
   for (const lang of languages) {

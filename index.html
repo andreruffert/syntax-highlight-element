@@ -33,7 +33,7 @@
       window.she = window.she || {};
       window.she.config = {
         prismBaseUrl: 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0', // Default
-        languages: ['markup', 'css', 'javascript', 'markdown'], // Default
+        languages: ['markup', 'css', 'javascript', 'jsx', 'markdown'],
         // Optional: language specific token type overwrites
         languageTokens: {
           css: ['important'],
@@ -79,6 +79,11 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
 
   - unordered list item 1
   - unordered list item 2
+</syntax-highlight>
+
+<syntax-highlight language="jsx">
+  {/* ... */}
+  &lt;Component>&lt;/Component&gt;
 </syntax-highlight>
 
     <script type="module" src="/src/index.js"></script>
