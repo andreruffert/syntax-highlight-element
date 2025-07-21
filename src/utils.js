@@ -1,3 +1,20 @@
+import { CONFIG } from './constants';
+
+export async function setupTokenizer() {
+  try {
+    if (!window.Prism) {
+      const prismBaseUrl = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
+      await loadPrismCore(prismBaseUrl);
+      await loadPrismLanguage({
+        baseUrl: prismBaseUrl,
+        language: CONFIG?.languages || ['markup', 'css', 'javascript'],
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 /**
  * Create & register the token `Highlight`'s in the `CSS.highlights` registry.
  * This enables the use of `::highlight(tokenType)` in CSS to style them.
