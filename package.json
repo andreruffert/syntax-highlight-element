@@ -30,7 +30,7 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.1.1",
+    "@biomejs/biome": "2.1.2",
     "conventional-changelog-cli": "5.0.0",
     "vite": "7.0.5"
   },
