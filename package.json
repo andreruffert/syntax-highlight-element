@@ -14,7 +14,8 @@
     ".": {
       "import": "./dist/syntax-highlight-element.js"
     },
-    "./themes/*": "./dist/themes/*"
+    "./themes/*": "./dist/themes/*",
+    "./tokenizer/*": "./dist/tokenizer/*"
   },
   "files": [
     "dist"
@@ -22,7 +23,7 @@
   "scripts": {
     "dev": "vite",
     "dev:docs": "vite --config vite.docs.config.js",
-    "build": "vite build && vite build --config vite.themes.config.js",
+    "build": "vite build && vite build --config vite.themes.config.js && vite build --config vite.tokenizer.config.js",
     "preview": "vite preview",
     "format": "biome check --write",
     "lint": "biome ci",

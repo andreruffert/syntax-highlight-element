@@ -1,18 +1,14 @@
 import { CONFIG } from './constants';
-import { setupTokenHighlights, setupTokenizer, tokenize } from './utils';
-
-const DEFAULT_TAG_NAME = 'syntax-highlight';
 
 export class SyntaxHighlightElement extends HTMLElement {
-  static async define(tagName = DEFAULT_TAG_NAME, registry = customElements) {
+  static async define(tagName = 'syntax-highlight', registry = customElements) {
     if (!CSS.highlights) {
       console.info('The CSS Custom Highlight API is not supported in this browser.');
       return;
     }
 
     if (!registry.get(tagName)) {
-      await setupTokenizer();
-      setupTokenHighlights(CONFIG?.languageTokens || {});
+      CONFIG.tokenizer?.setup && (await CONFIG.tokenizer.setup());
       registry.define(tagName, SyntaxHighlightElement);
       return SyntaxHighlightElement;
     }
@@ -58,7 +54,7 @@ export class SyntaxHighlightElement extends HTMLElement {
    */
   paintTokenHighlights() {
     // Tokenize the text
-    const tokens = tokenize(this.contentElement.innerText, this.language);
+    const tokens = CONFIG.tokenizer?.tokenize(this.contentElement.innerText, this.language) || [];
     const languageTokenTypes = CONFIG.languageTokens?.[this.language] || [];
 
     // Paint highlights
