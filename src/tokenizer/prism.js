@@ -298,6 +298,7 @@ export async function loadPrismLanguage({ baseUrl, language }) {
       if (langData.has(lang)) return resolve();
       const script = document.createElement('script');
       script.src = `${baseUrl}/components/prism-${lang}.min.js`;
+      script.async = true;
       script.onload = () => {
         document.head.removeChild(script);
         langData.add(lang);
@@ -322,6 +323,7 @@ export function loadPrismCore(baseUrl) {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
     script.src = `${baseUrl}/components/prism-core.min.js`;
+    script.async = true;
     script.onload = resolve;
     script.onerror = reject;
     document.head.appendChild(script);
