@@ -1,7 +1,8 @@
 import { NAMESPACE } from './constants';
 import { SyntaxHighlightElement } from './syntax-highlight-element';
+import { setupTokenHighlights } from './utils';
 
-export { SyntaxHighlightElement };
+export { SyntaxHighlightElement, setupTokenHighlights };
 export default SyntaxHighlightElement;
 
 window[NAMESPACE] = window[NAMESPACE] || {};
