@@ -1,9 +1,12 @@
 /**
  * Create & register the token `Highlight`'s in the `CSS.highlights` registry.
  * This enables the use of `::highlight(tokenType)` in CSS to style them.
- * @param {Object} [languageTokens={}] - Language specific overwrites.
+ *
+ * @param {Array} [tokenTypes=[]] - Language token types
+ * @param {Object} [options={}]
+ * @param {Object} [options.languageTokens={}] - Language specific overwrites.
  */
-export function setupTokenHighlights(tokenTypes, { languageTokens = {} }) {
+export function setupTokenHighlights(tokenTypes = [], { languageTokens = {} } = {}) {
   const languageTokenTypes = Object.entries(languageTokens).flatMap((entry) => {
     const [lang, tokenTypes] = entry;
     return tokenTypes.map((tokenType) => `${lang}-${tokenType}`);
