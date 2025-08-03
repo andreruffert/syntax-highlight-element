@@ -96,13 +96,13 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
       //  * Option 1. autoload - default
       //  */
       // import '/src/index.js'
-      // import SyntaxHighlightElement from '/src/index.js'
+      import SyntaxHighlightElement from '/src/index.js'
 
       /**
        * Option 2. Opt out of prism autoload by manually importing prism core
        */
-      import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js'
-      import SyntaxHighlightElement from '/src/index.js?define=false'
+      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js'
+      // import SyntaxHighlightElement from '/src/index.js?define=false'
 
       /**
        * Option 2.a. Load lang deps manually (without dependency resolution)
@@ -126,11 +126,11 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
        * Option 2.b. resolve language dependencies and load from URL/CDN
        */
       // - CDN
-      import { loadPrismLanguage } from '/src/tokenizer/prism.js'
-      await loadPrismLanguage({
-        baseUrl: 'https://unpkg.com/prismjs@1.30.0',
-        language: window.she.config.languages
-      });
+      // import { loadPrismLanguage } from '/src/tokenizer/prism.js'
+      // await loadPrismLanguage({
+      //   baseUrl: 'https://unpkg.com/prismjs@1.30.0',
+      //   language: window.she.config.languages
+      // });
       // // - npm
       // import { resolveLanguageDependencies } from '/src/tokenizer/prism.js'
       // const langDeps = resolveLanguageDependencies(window.she.config.languages);
@@ -140,7 +140,7 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
       //   console.log({importPath})
       // }
       // // - Manually define SyntaxHighlightElement with ?define=false once all dependecies are loaded
-      window.SyntaxHighlightElement = SyntaxHighlightElement.define();
+      // window.SyntaxHighlightElement = await SyntaxHighlightElement.define();
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {

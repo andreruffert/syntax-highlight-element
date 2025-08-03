@@ -25,6 +25,7 @@
     "dev:docs": "vite --config vite.docs.config.js",
     "build": "vite build && vite build --config vite.themes.config.js && vite build --config vite.tokenizer.config.js",
     "preview": "vite preview",
+    "test": "vitest",
     "format": "biome check --write",
     "lint": "biome ci",
     "prepublishOnly": "npm run build",
@@ -32,8 +33,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.1.2",
+    "@vitest/browser": "3.2.4",
     "conventional-changelog-cli": "5.0.0",
-    "vite": "7.0.6"
+    "playwright": "1.54.2",
+    "vite": "7.0.6",
+    "vitest": "3.2.4"
   },
   "volta": {
     "node": "22.13.1",

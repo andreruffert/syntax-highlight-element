@@ -13,4 +13,12 @@ export default defineConfig({
       fileName: 'syntax-highlight-element',
     },
   },
+  test: {
+    browser: {
+      provider: 'playwright',
+      enabled: true,
+      // at least one instance is required
+      instances: [{ browser: 'chromium' }],
+    },
+  },
 });
