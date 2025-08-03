@@ -1,4 +1,4 @@
-import { CONFIG } from './constants';
+import config from './config';
 
 export class SyntaxHighlightElement extends HTMLElement {
   static async define(tagName = 'syntax-highlight', registry = customElements) {
@@ -8,11 +8,13 @@ export class SyntaxHighlightElement extends HTMLElement {
     }
 
     if (!registry.get(tagName)) {
-      CONFIG.tokenizer?.setup && (await CONFIG.tokenizer.setup());
+      config?.tokenizer?.setup && (await config.tokenizer.setup(config));
       registry.define(tagName, SyntaxHighlightElement);
       return SyntaxHighlightElement;
     }
   }
+
+  // static config = config;
 
   #internals;
   #highlights = new Set();
@@ -54,8 +56,8 @@ export class SyntaxHighlightElement extends HTMLElement {
    */
   paintTokenHighlights() {
     // Tokenize the text
-    const tokens = CONFIG.tokenizer?.tokenize(this.contentElement.innerText, this.language) || [];
-    const languageTokenTypes = CONFIG.languageTokens?.[this.language] || [];
+    const tokens = config.tokenizer?.tokenize(this.contentElement.innerText, this.language) || [];
+    const languageTokenTypes = config.languageTokens?.[this.language] || [];
 
     // Paint highlights
     let pos = 0;
