@@ -1,20 +1,17 @@
-import { CONFIG } from '../constants';
 import { setupTokenHighlights } from '../utils';
 
 export const tokenizer = {
-  async setup() {
+  async setup(config) {
     try {
       if (!window.Prism) {
         const prismBaseUrl = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
         await loadPrismCore(prismBaseUrl);
         await loadPrismLanguage({
           baseUrl: prismBaseUrl,
-          language: CONFIG?.languages,
+          language: config.languages,
         });
       }
-      setupTokenHighlights(tokenTypes, {
-        languageTokens: CONFIG?.languageTokens || {},
-      });
+      setupTokenHighlights(tokenTypes, { languageTokens: config.languageTokens });
     } catch (error) {
       console.error(error);
     }
