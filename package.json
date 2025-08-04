@@ -1,6 +1,6 @@
 {
   "name": "syntax-highlight-element",
-  "version": "1.2.0-beta.0",
+  "version": "1.2.0-beta.1",
   "description": "Syntax Highlighting using the CSS Custom Highlight API",
   "license": "MIT",
   "funding": "https://github.com/andreruffert/syntax-highlight-element?sponsor=1",
