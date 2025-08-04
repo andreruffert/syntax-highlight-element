@@ -32,17 +32,16 @@
     <script>
       window.she = window.she || {};
       window.she.config = {
+        // Define languages to support
         languages: ['html', 'css', 'js', 'jsx', 'md'],
-        // Optional: language specific token type overwrites
+        // Language specific token type overwrites
         languageTokens: {
           css: ['important'],
           md: ['title', 'list'],
         },
-        // Optional: extend/customize tokenizer
-        // tokenizer: {
-        //   async setup() {},
-        //   tokenize: () => [],
-        // }
+        // Customize setup/tokenize method
+        // async setup() {},
+        // tokenize: () => [],
       }
     </script>
   </head>
@@ -92,58 +91,25 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
 </syntax-highlight>
 
     <script type="module">
-      // /**
-      //  * Option 1. autoload - default
-      //  */
-      // import '/src/index.js'
-      import SyntaxHighlightElement from '/src/index.js'
-      // import SyntaxHighlightElement from '/src/index.js?define=false'
-      // SyntaxHighlightElement.config.languages = ['html', 'css', 'js', 'jsx', 'md'];
-      // window.SyntaxHighlightElement = await SyntaxHighlightElement.define();
+      /**
+       * Option 1. autoload - default
+       */
+      import '/src/index.js'
 
       /**
-       * Option 2. Opt out of prism autoload by manually importing prism core
+       * Option 2.a. Opt out of prism autoload by manually importing prism core
        */
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-core.min.js'
-      // import SyntaxHighlightElement from '/src/index.js?define=false'
-
+       // import 'prismjs/components/prism-core'
       /**
-       * Option 2.a. Load lang deps manually (without dependency resolution)
+       * Option 2.b. Load lang deps manually (without dependency resolution)
        */
-      // // - CDN
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markup.min.js'
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-css.min.js'
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-clike.min.js'
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js'
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-jsx.min.js'
-      // import 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markdown.min.js'
-      // // - npm
       // import 'prismjs/components/prism-markup'
       // import 'prismjs/components/prism-css'
       // import 'prismjs/components/prism-clike'
       // import 'prismjs/components/prism-javascript'
       // import 'prismjs/components/prism-jsx'
       // import 'prismjs/components/prism-markdown'
-
-      /**
-       * Option 2.b. resolve language dependencies and load from URL/CDN
-       */
-      // - CDN
-      // import { loadPrismLanguage } from '/src/tokenizer/prism.js'
-      // await loadPrismLanguage({
-      //   baseUrl: 'https://unpkg.com/prismjs@1.30.0',
-      //   language: window.she.config.languages
-      // });
-      // // - npm
-      // import { resolveLanguageDependencies } from '/src/tokenizer/prism.js'
-      // const langDeps = resolveLanguageDependencies(window.she.config.languages);
-      // for await (const lang of langDeps) {
-      //   const importPath = `prismjs/components/prism-${lang}`
-      //   await import(importPath);
-      //   console.log({importPath})
-      // }
-      // // - Manually define SyntaxHighlightElement with ?define=false once all dependecies are loaded
-      // window.SyntaxHighlightElement = await SyntaxHighlightElement.define();
+      // ...
     </script>
     <script>
       document.addEventListener('DOMContentLoaded', () => {

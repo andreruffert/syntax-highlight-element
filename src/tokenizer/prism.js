@@ -1,43 +1,24 @@
-import { setupTokenHighlights } from '../utils';
-
-export const tokenizer = {
-  async setup(config) {
-    try {
-      if (!window.Prism) {
-        const prismBaseUrl = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
-        await loadPrismCore(prismBaseUrl);
-        await loadPrismLanguage({
-          baseUrl: prismBaseUrl,
-          language: config.languages,
-        });
-      }
-      setupTokenHighlights(tokenTypes, { languageTokens: config.languageTokens });
-    } catch (error) {
-      console.error(error);
-    }
-  },
-  /**
-   *
-   * @param {string} text - The text to tokenize.
-   * @param {string} language - The syntax language grammar.
-   * @returns {Array} - An array of flattened prismjs tokens.
-   */
-  tokenize(text, language) {
-    const lang = window.Prism.languages[language] || undefined;
-    if (!lang) {
-      console.warn(`window.Prism.languages.${language} is undefined.`);
-      return [];
-    }
-    const tokens = window.Prism.tokenize(text, lang);
-    return tokens.flatMap(getFlatToken);
-  },
-};
+/**
+ *
+ * @param {string} text - The text to tokenize.
+ * @param {string} language - The syntax language grammar.
+ * @returns {Array} - An array of flattened prismjs tokens.
+ */
+export function tokenize(text, language) {
+  const lang = window.Prism.languages[language] || undefined;
+  if (!lang) {
+    console.warn(`window.Prism.languages.${language} is undefined.`);
+    return [];
+  }
+  const tokens = window.Prism.tokenize(text, lang);
+  return tokens.flatMap(getFlatToken);
+}
 
 /**
  * Standard tokens
  * https://prismjs.com/tokens.html#standard-tokens
  */
-const tokenTypes = [
+export const tokenTypes = [
   'atrule',
   'attr-name',
   'attr-value',
