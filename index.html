@@ -30,6 +30,7 @@
       }
     </style>
     <script>
+      // Global namespace config
       window.she = window.she || {};
       window.she.config = {
         // Define languages to support
@@ -92,16 +93,35 @@ import SyntaxHighlightElement from 'syntax-highlight-element';</syntax-highlight
 
     <script type="module">
       /**
-       * Option 1. autoload - default
+       * Option 1. autoload - default with global namespace config
        */
       import '/src/index.js'
 
       /**
-       * Option 2.a. Opt out of prism autoload by manually importing prism core
+       * Option 2. configure with `SyntaxHighlightElement.config` and `?define=false` import query param
+       */
+      // import { SyntaxHighlightElement } from '/src/index.js?define=false';
+      // SyntaxHighlightElement.config = {
+      //   // Define languages to support
+      //   languages: ['html', 'css', 'js', 'jsx', 'md'],
+      //   // Language specific token type overwrites
+      //   languageTokens: {
+      //     css: ['important'],
+      //     md: ['title', 'list'],
+      //   },
+      //   // Customize setup/tokenize methods
+      //   // async setup() {},
+      //   // tokenize: () => [],
+      // };
+      // SyntaxHighlightElement.define();
+
+      /**
+       * Option 3.a. Opt out of prism autoload by manually importing prism core
        */
        // import 'prismjs/components/prism-core'
+
       /**
-       * Option 2.b. Load lang deps manually (without dependency resolution)
+       * Option 3.b. Load lang deps manually (without dependency resolution)
        */
       // import 'prismjs/components/prism-markup'
       // import 'prismjs/components/prism-css'

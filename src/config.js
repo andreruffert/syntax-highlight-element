@@ -1,37 +1,23 @@
-import { NAMESPACE } from './constants';
-import { loadPrismCore, loadPrismLanguage, tokenize, tokenTypes } from './tokenizer/prism';
+import { setup, tokenize, tokenTypes } from './tokenizer/prism';
 
 /**
  * @typedef Config
  * @type {object}
- * @property {string[]} languages - Syntax language grammars to autoload.
- * @property {string[]} tokenTypes - Language token types.
- * @property {{[key: string]: string[]}} languageTokens - Language specific token types.
+ * @property {string[]} languages - List of languages to support for syntax highlighting.
+ * @property {string[]} tokenTypes - Token types used during lexing/parsing.
+ * @property {{[key: string]: string[]}} languageTokens - Mapping of language names to their specific tokenization rules.
  * @property {function} setup - Runs before the custom element gets defined in the registry.
- * @property {function} tokenize - Used to tokenize the text.
+ * @property {function} tokenize - Tokenize text based on the specified language grammar
  */
 
-/** @type {Config} */
-export const config = Object.assign(
-  {
-    languages: ['markup', 'css', 'javascript'],
-    tokenTypes,
-    languageTokens: {},
-    async setup() {
-      try {
-        if (!window.Prism) {
-          const prismBaseUrl = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
-          await loadPrismCore(prismBaseUrl);
-          await loadPrismLanguage({
-            baseUrl: prismBaseUrl,
-            language: config.languages,
-          });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    },
-    tokenize,
-  },
-  window[NAMESPACE]?.config || {},
-);
+/**
+ * Default configuration object.
+ * @type {Config}
+ */
+export const configDefaults = {
+  languages: ['markup', 'css', 'javascript'],
+  tokenTypes,
+  languageTokens: {},
+  setup,
+  tokenize,
+};

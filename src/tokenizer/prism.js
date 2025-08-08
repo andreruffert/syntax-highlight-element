@@ -1,11 +1,40 @@
 /**
+ * Asynchronously sets up the Prism tokenizer if not already available.
+ * Runs before the custom element gets defined in the registry.
  *
- * @param {string} text - The text to tokenize.
- * @param {string} language - The syntax language grammar.
- * @returns {Array} - An array of flattened prismjs tokens.
+ * Loads Prism core and specified language grammars from a CDN.
+ * Safe to call multiple times; will only load once.
+ *
+ * @async
+ * @function setup
+ * @returns {Promise<void>} Resolves when Prism and required languages are loaded, or rejects on network/error.
+ * @throws {Error} Logs errors to console if loading fails.
+ */
+export async function setup() {
+  try {
+    if (!window.Prism) {
+      const prismBaseUrl = 'https://cdn.jsdelivr.net/npm/prismjs@1.30.0';
+      await loadPrismCore(prismBaseUrl);
+      await loadPrismLanguage({
+        baseUrl: prismBaseUrl,
+        language: SyntaxHighlightElement.config.languages,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+/**
+ * Tokenizes a given text using Prism.js based on the specified language grammar.
+ *
+ * @function tokenize
+ * @param {string} text - The text string to tokenize.
+ * @param {string} language - The language name associated with the code.
+ * @returns {Array<Object>} A flat array of prismjs tokens representing the tokenized code.
  */
 export function tokenize(text, language) {
-  const lang = window.Prism.languages[language] || undefined;
+  const lang = window.Prism?.languages[language] || undefined;
   if (!lang) {
     console.warn(`window.Prism.languages.${language} is undefined.`);
     return [];

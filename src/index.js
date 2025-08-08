@@ -1,5 +1,5 @@
 import { NAMESPACE } from './constants';
-import { SyntaxHighlightElement } from './syntax-highlight-element';
+import SyntaxHighlightElement from './syntax-highlight-element';
 import { setupTokenHighlights } from './utils';
 
 export { SyntaxHighlightElement, setupTokenHighlights };
