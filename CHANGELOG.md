@@ -1,3 +1,26 @@
+# [1.2.0](https://github.com/andreruffert/syntax-highlight-element/compare/v1.1.1...v1.2.0) (2025-08-08)
+
+
+### Bug Fixes
+
+* **loadPrismLanguage:** include transitive lang deps ([457fe62](https://github.com/andreruffert/syntax-highlight-element/commit/457fe62b3095b4ab90e3ed94ef05acefaa31970d)), closes [#38](https://github.com/andreruffert/syntax-highlight-element/issues/38)
+
+
+### Features
+
+* config.setup, config.tokenize, config.tokenTypes ([e640211](https://github.com/andreruffert/syntax-highlight-element/commit/e64021165e54e1918eb797e0aab91e77eca9fcf9))
+* introduce `language` setter ([19c9f10](https://github.com/andreruffert/syntax-highlight-element/commit/19c9f102325f44bd50d0aea9111626dea97d9fbb))
+* **loadPrismLanguage:** resolve language aliases ([d217bd6](https://github.com/andreruffert/syntax-highlight-element/commit/d217bd652df4c7677667fae3c2df634929393b22)), closes [#38](https://github.com/andreruffert/syntax-highlight-element/issues/38)
+* optional prism autoload ([e7608f5](https://github.com/andreruffert/syntax-highlight-element/commit/e7608f58cf8a486f2aec8659c779c62a59c0748a)), closes [#34](https://github.com/andreruffert/syntax-highlight-element/issues/34)
+* SyntaxHighlightElement.config getter/setter ([ed16747](https://github.com/andreruffert/syntax-highlight-element/commit/ed16747366206d80dd5b17c5d0dcf85f6c111ae8))
+
+
+### Performance Improvements
+
+* **tokenizer/prism:** ensure async deps loading ([cd1939b](https://github.com/andreruffert/syntax-highlight-element/commit/cd1939bf9e0c2ace51eeaf24fc44220681a21624)), closes [#39](https://github.com/andreruffert/syntax-highlight-element/issues/39)
+
+
+
 ## [1.1.1](https://github.com/andreruffert/syntax-highlight-element/compare/v1.1.0...v1.1.1) (2025-07-13)
 
 
