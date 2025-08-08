@@ -1,7 +1,10 @@
-import { config } from './config';
+/** @import { Config } from './config.js' */
+
+import { configDefaults } from './config';
+import { NAMESPACE } from './constants';
 import { setupTokenHighlights } from './utils';
 
-export class SyntaxHighlightElement extends HTMLElement {
+export default class Component extends HTMLElement {
   static async define(tagName = 'syntax-highlight', registry = customElements) {
     if (!CSS.highlights) {
       console.info('The CSS Custom Highlight API is not supported in this browser.');
@@ -9,11 +12,37 @@ export class SyntaxHighlightElement extends HTMLElement {
     }
 
     if (!registry.get(tagName)) {
-      typeof config?.setup === 'function' && (await config.setup());
-      setupTokenHighlights(config.tokenTypes, { languageTokens: config.languageTokens });
-      registry.define(tagName, SyntaxHighlightElement);
-      return SyntaxHighlightElement;
+      // Setup custom element
+      typeof Component.#config?.setup === 'function' && (await Component.#config.setup());
+      setupTokenHighlights(Component.#config.tokenTypes, {
+        languageTokens: Component.#config.languageTokens,
+      });
+      registry.define(tagName, Component);
+      return Component;
     }
+  }
+
+  /**
+   * Configuration object with default values.
+   * Merge defaults with global namespace config.
+   * @type {Config}
+   * */
+  static #config = Object.assign(configDefaults, window[NAMESPACE]?.config || {});
+
+  /**
+   * Configuration object
+   * @type {Config}
+   */
+  static get config() {
+    return Component.#config;
+  }
+
+  /**
+   * Modify configuration object
+   * @param {Config} properties
+   */
+  static set config(properties) {
+    Component.#config = Object.assign(Component.#config, properties);
   }
 
   #internals;
@@ -56,8 +85,8 @@ export class SyntaxHighlightElement extends HTMLElement {
    */
   paintTokenHighlights() {
     // Tokenize the text
-    const tokens = config.tokenize(this.contentElement.innerText, this.language) || [];
-    const languageTokenTypes = config.languageTokens?.[this.language] || [];
+    const tokens = Component.#config.tokenize(this.contentElement.innerText, this.language) || [];
+    const languageTokenTypes = Component.#config.languageTokens?.[this.language] || [];
 
     // Paint highlights
     let pos = 0;
