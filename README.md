@@ -17,6 +17,10 @@ The code is highlighted without having to wrap a bunch of `<span>` elements arou
   <br>
 </div>
 
+## Examples
+
+For examples checkout the [CodePen &lt;syntax-highlight&gt; collection](https://codepen.io/collection/EPYpMJ).
+
 ## Install
 
 Install via npm
@@ -71,8 +75,11 @@ Currently there are only limited [themes](https://github.com/andreruffert/syntax
 /**
  * @typedef Config
  * @type {object}
- * @property {string[]} languages - Language grammars to highlight.
- * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
+ * @property {string[]} languages - List of languages to support for syntax highlighting.
+ * @property {string[]} tokenTypes - Token types used during lexing/parsing.
+ * @property {{[key: string]: string[]}} languageTokens - Mapping of language names to their specific tokenization rules.
+ * @property {function} setup - Runs before the custom element gets defined in the registry.
+ * @property {function} tokenize - Tokenize text based on the specified language grammar
  */
 
 window.she = window.she || {};
@@ -80,14 +87,14 @@ window.she = window.she || {};
 /** @type {Config} */
 window.she.config = {
   languages: ['markup', 'css', 'javascript'], // Default
+  tokenTypes: [],
+  languageTokens: {},
+  setup: async () => {},
+  tokenize: (text, language) => [],
 };
 ```
 
 Full list of all [languages supported](https://prismjs.com/#supported-languages) by the prism tokenizer.
-
-## Examples
-
-For examples checkout the [CodePen &lt;syntax-highlight&gt; collection](https://codepen.io/collection/EPYpMJ).
 
 ## Browser Support
 
