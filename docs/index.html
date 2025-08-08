@@ -238,85 +238,83 @@ window.she.config = {
       const DEFAULT_LANGUAGE_EXAMPLE = 'JS';
       const SUPPORTS_CSS_HIGHLIGHTS = Boolean(CSS.highlights);
 
-      document.addEventListener('DOMContentLoaded', async () => {
-        if (!SUPPORTS_CSS_HIGHLIGHTS) {
-          document.querySelector('[data-alert="no-support"]').removeAttribute('hidden')
-        }
+      if (!SUPPORTS_CSS_HIGHLIGHTS) {
+        document.querySelector('[data-alert="no-support"]').removeAttribute('hidden')
+      }
 
-        /**
-         * Set initial language example
-         */
-        const playgroundCode = document.querySelector('.playground-code syntax-highlight');
-        const defaultExample = languageExamples[DEFAULT_LANGUAGE_EXAMPLE];
-        const togglePlaygroundLoading = () => playgroundCode.parentElement.toggleAttribute('data-loading');
-        playgroundCode.innerHTML = await fetchFileContent(defaultExample.file, { escapeHtml: defaultExample?.escapeHtml });
-        playgroundCode.setAttribute('language', defaultExample.language);
+      /**
+        * Set initial language example
+        */
+      const playgroundCode = document.querySelector('.playground-code syntax-highlight');
+      const defaultExample = languageExamples[DEFAULT_LANGUAGE_EXAMPLE];
+      const togglePlaygroundLoading = () => playgroundCode.parentElement.toggleAttribute('data-loading');
+      playgroundCode.innerHTML = await fetchFileContent(defaultExample.file, { escapeHtml: defaultExample?.escapeHtml });
+      playgroundCode.setAttribute('language', defaultExample.language);
+
+      if (SUPPORTS_CSS_HIGHLIGHTS) {
+        await customElements.whenDefined('syntax-highlight');
+        playgroundCode.update();
+      };
+
+      togglePlaygroundLoading();
+
+      /**
+        * Language example switcher
+        */
+      const languageSelector = document.querySelector('#example-language-select');
+      const languageOptions = Object.keys(languageExamples).map((name, index) => {
+        const option = document.createElement('option');
+        option.value = option.textContent = name;
+        option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
+        return option;
+      });
+      languageOptions.forEach(option => languageSelector.append(option));
+      languageSelector.removeAttribute('disabled');
+      languageSelector.addEventListener('change', async event => {
+        togglePlaygroundLoading();
+        playgroundCode.textContent = '';
+        const example = languageExamples[event.target.value];
+        const exampleContent = await fetchFileContent(example.file, { escapeHtml: example?.escapeHtml });
+        playgroundCode.innerHTML = exampleContent || 'Not found';
+        playgroundCode.setAttribute('language', example.language);
 
         if (SUPPORTS_CSS_HIGHLIGHTS) {
-          await customElements.whenDefined('syntax-highlight');
           playgroundCode.update();
         };
 
         togglePlaygroundLoading();
+      });
 
-        /**
-         * Language example switcher
-         */
-        const languageSelector = document.querySelector('#example-language-select');
-        const languageOptions = Object.keys(languageExamples).map((name, index) => {
-          const option = document.createElement('option');
-          option.value = option.textContent = name;
-          option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
-          return option;
-        });
-        languageOptions.forEach(option => languageSelector.append(option));
-        languageSelector.removeAttribute('disabled');
-        languageSelector.addEventListener('change', async event => {
+      /**
+        * Theme preset switcher
+        */
+      const themeSelector = document.querySelector('#theme-preset-select');
+      const themeOptions = Object.keys(themePresets).map((name, index) => {
+        const option = document.createElement('option');
+        option.value = option.textContent = name;
+        option.selected = !index;
+        return option
+      });
+      themeOptions.forEach(option => themeSelector.append(option));
+      themeSelector.removeAttribute('disabled');
+      themeSelector.addEventListener('change', event => {
+        togglePlaygroundLoading();
+        const oldThemeStyles = document.querySelector('[data-she-theme]');
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.dataset.sheTheme = '';
+        link.onload = () => {
+          document.head.removeChild(oldThemeStyles);
           togglePlaygroundLoading();
-          playgroundCode.textContent = '';
-          const example = languageExamples[event.target.value];
-          const exampleContent = await fetchFileContent(example.file, { escapeHtml: example?.escapeHtml });
-          playgroundCode.innerHTML = exampleContent || 'Not found';
-          playgroundCode.setAttribute('language', example.language);
-
-          if (SUPPORTS_CSS_HIGHLIGHTS) {
-            playgroundCode.update();
-          };
-
+        }
+        link.onerror = () => {
+          const toast = document.querySelector('.toast');
+          toast.textContent = 'There was a problem loading the theme…'
+          toast.showPopover();
           togglePlaygroundLoading();
-        });
-
-        /**
-         * Theme preset switcher
-         */
-        const themeSelector = document.querySelector('#theme-preset-select');
-        const themeOptions = Object.keys(themePresets).map((name, index) => {
-          const option = document.createElement('option');
-          option.value = option.textContent = name;
-          option.selected = !index;
-          return option
-        });
-        themeOptions.forEach(option => themeSelector.append(option));
-        themeSelector.removeAttribute('disabled');
-        themeSelector.addEventListener('change', event => {
-          togglePlaygroundLoading();
-          const oldThemeStyles = document.querySelector('[data-she-theme]');
-          const link = document.createElement('link');
-          link.rel = 'stylesheet';
-          link.dataset.sheTheme = '';
-          link.onload = () => {
-            document.head.removeChild(oldThemeStyles);
-            togglePlaygroundLoading();
-          }
-          link.onerror = () => {
-            const toast = document.querySelector('.toast');
-            toast.textContent = 'There was a problem loading the theme…'
-            toast.showPopover();
-            togglePlaygroundLoading();
-          };
-          link.href = `https://cdn.jsdelivr.net/npm/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.min.css`;
-          document.head.appendChild(link);
-        });
+        };
+        link.href = `https://cdn.jsdelivr.net/npm/syntax-highlight-element@latest/dist/themes/${themePresets[event.target.value]}.min.css`;
+        document.head.appendChild(link);
       });
     </script>
 
