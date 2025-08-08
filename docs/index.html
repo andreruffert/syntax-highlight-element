@@ -97,6 +97,11 @@
       </section>
 
       <section data-section="content">
+        <h1>Examples</h1>
+        <p>For more examples checkout the CodePen <a href="https://codepen.io/collection/EPYpMJ" target="_blank" rel="noreferrer">&lt;syntax-highlight&gt; collection</a>.</p>
+      </section>
+
+      <section data-section="content">
         <h1>Installation &amp; Usage</h1>
         <article>
           <h2>Install</h2>
@@ -161,8 +166,11 @@
           <syntax-highlight language="js" id="copy-config">/**
  * @typedef Config
  * @type {object}
- * @property {string[]} languages - Prism languages.
- * @property {{ [key: string]: string[] }} languageTokens - Language specific token types.
+ * @property {string[]} languages - List of languages to support for syntax highlighting.
+ * @property {string[]} tokenTypes - Token types used during lexing/parsing.
+ * @property {{[key: string]: string[]}} languageTokens - Mapping of language names to their specific tokenization rules.
+ * @property {function} setup - Runs before the custom element gets defined in the registry.
+ * @property {function} tokenize - Tokenize text based on the specified language grammar
  */
 
 window.she = window.she || {};
@@ -170,17 +178,16 @@ window.she = window.she || {};
 /** @type {Config} */
 window.she.config = {
   languages: ['markup', 'css', 'javascript'], // Default
+  tokenTypes: [],
+  languageTokens: {},
+  setup: async () => {},
+  tokenize: (text, language) => [],
 };</syntax-highlight>
           <clipboard-copy for="copy-config" class="button" aria-label="Copy content">
             <svg class="icon" width="1em" height="1em" aria-hidden="true"><use xlink:href="#copy"></use></svg>
           </clipboard-copy>
         </div>
         <p>Full list of all <a href="https://prismjs.com/#supported-languages" target="_blank" rel="noreferrer">languages supported</a> by the prism tokenizer.</p>
-      </section>
-
-      <section data-section="content">
-        <h1>Examples</h1>
-        <p>For more examples checkout the CodePen <a href="https://codepen.io/collection/EPYpMJ" target="_blank" rel="noreferrer">&lt;syntax-highlight&gt; collection</a>.</p>
       </section>
 
       <section data-section="content">
