@@ -36,7 +36,7 @@
     "@vitest/browser": "3.2.4",
     "conventional-changelog-cli": "5.0.0",
     "playwright": "1.55.1",
-    "vite": "7.1.7",
+    "vite": "7.1.9",
     "vitest": "3.2.4"
   },
   "volta": {
