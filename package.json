@@ -32,7 +32,7 @@
     "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.7",
+    "@biomejs/biome": "2.3.1",
     "@vitest/browser": "3.2.4",
     "conventional-changelog-cli": "5.0.0",
     "playwright": "1.56.1",
