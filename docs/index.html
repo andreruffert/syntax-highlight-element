@@ -54,6 +54,7 @@
         <svg class="icon" width="1.2em" height="1.2em"><use xlink:href="#sun"></use></svg>
       </color-scheme-switch>
     </header>
+
     <main>
       <section data-section="intro">
         <span class="emoji" aria-hidden="true">👓</span>
@@ -155,8 +156,8 @@
       <section data-section="content">
         <h1>Attributes</h1>
         <ul>
-          <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Default suported languages <code>html|css|js</code>.
-          <li><code>content-selector</code> A CSS selector to specify the content element. The default is the element itself.
+          <li><code>language</code> The syntax language. The default is <code>plaintext</code>. Default suported languages <code>html|css|js</code>.</li>
+          <li><code>content-selector</code> A CSS selector to specify the content element. The default is the element itself.</li>
         </ul>
       </section>
 
@@ -168,7 +169,7 @@
  * @type {object}
  * @property {string[]} languages - List of languages to support for syntax highlighting.
  * @property {string[]} tokenTypes - Token types used during lexing/parsing.
- * @property {{[key: string]: string[]}} languageTokens - Mapping of language names to their specific tokenization rules.
+ * @property {[key: string]: string[]} languageTokens - Mapping of language names to their specific tokenization rules.
  * @property {function} setup - Runs before the custom element gets defined in the registry.
  * @property {function} tokenize - Tokenize text based on the specified language grammar
  */
@@ -193,8 +194,8 @@ window.she.config = {
       <section data-section="content">
         <h1>Credits</h1>
         <ul>
-          <li><a href="https://github.com/bramus" target="_blank" rel="noreferrer">Bramus Van Damme</a> and his <a href="https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting" target="_blank">blog post</a> where I first read about using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API" target="_blank">CSS Custom Highlight API</a> for syntax highlighting.
-          <li><a href="https://github.com/PrismJS/prism" target="_blank" rel="noreferrer">Prism</a>'s tokenizer.
+          <li><a href="https://github.com/bramus" target="_blank" rel="noreferrer">Bramus Van Damme</a> and his <a href="https://www.bram.us/2024/02/18/custom-highlight-api-for-syntax-highlighting" target="_blank">blog post</a> where I first read about using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSS_Custom_Highlight_API" target="_blank">CSS Custom Highlight API</a> for syntax highlighting.</li>
+          <li><a href="https://github.com/PrismJS/prism" target="_blank" rel="noreferrer">Prism</a>'s tokenizer.</li>
         </ul>
       </section>
     </main>
@@ -232,7 +233,7 @@ window.she.config = {
     <script type="module">
       import 'https://cdn.jsdelivr.net/npm/syntax-highlight-element@1/+esm';
 
-      import { languageExamples, fetchFileContent } from './language-examples.js'
+      import { fetchFileContent, languageExamples } from './language-examples.js'
       import { themePresets } from './theme-presets.js';
 
       const DEFAULT_LANGUAGE_EXAMPLE = 'JS';
@@ -268,7 +269,7 @@ window.she.config = {
         option.selected = name === DEFAULT_LANGUAGE_EXAMPLE || !index;
         return option;
       });
-      languageOptions.forEach(option => languageSelector.append(option));
+      languageOptions.forEach(option => { languageSelector.append(option) });
       languageSelector.removeAttribute('disabled');
       languageSelector.addEventListener('change', async event => {
         togglePlaygroundLoading();
@@ -295,7 +296,7 @@ window.she.config = {
         option.selected = !index;
         return option
       });
-      themeOptions.forEach(option => themeSelector.append(option));
+      themeOptions.forEach(option => { themeSelector.append(option) });
       themeSelector.removeAttribute('disabled');
       themeSelector.addEventListener('change', event => {
         togglePlaygroundLoading();
@@ -335,4 +336,3 @@ window.she.config = {
     </script>
   </body>
 </html>
-
