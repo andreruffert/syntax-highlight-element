@@ -425,7 +425,6 @@
     opacity: 1;
 
     @starting-style {
-      /* biome-ignore lint/suspicious/noDuplicateProperties: reason */
       opacity: 0;
       transform: translateY(100%);
     }
