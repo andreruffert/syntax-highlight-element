@@ -46,7 +46,7 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         if: ${{ !cancelled() }}
         with:
           name: playwright-report
