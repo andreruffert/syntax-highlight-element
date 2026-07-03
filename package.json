@@ -36,7 +36,7 @@
     "@vitest/browser-playwright": "4.1.9",
     "conventional-changelog-cli": "5.0.0",
     "vite": "8.1.0",
-    "vitest": "4.1.8"
+    "vitest": "4.1.9"
   },
   "volta": {
     "node": "22.13.1",
